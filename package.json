@@ -1,11 +1,22 @@
 {
   "name": "mfs_website",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@editorjs/editorjs": "^2.26.5",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
