@@ -3,19 +3,40 @@
     margin: 0;
     box-sizing: border-box;
     font-size: 10px;
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Allerta Stencil', sans-serif;
+    font-family: 'Open Sans', sans-serif; */
 }
 
-h1{
-    color: red;
-}
-h2{
-    color: blue;
+h1, h2, h3, h4 {
+    font-weight: 400;
 }
 
-
-.navbar{
-    background-color: aquamarine;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+a{
+    text-decoration: none;
+    color: black;
 }
+a:visited{
+    text-decoration: none;
+    color: none;
+}
+li{
+    list-style: none;
+}
+
+.text24{
+    font-size: 2.4rem;
+}
+
+.textWhite{
+    color: #fff;
+}
+
+.on_visited{
+    color: #BF7315 !important;
+}
+
+#MFS{
+    font-size: 3rem;
+}
+

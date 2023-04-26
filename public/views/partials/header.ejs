@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Montserrat:wght@400;600&family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/varAllPage.css">
+    <link rel="stylesheet" href="../../css/styleLoginAndSignUp.css">
     <script src="../../js_client/script-header.js"></script>
 </head>
 <body>
+    <div class="backgroudHeroBanner">
     <header>
-        <nav class="navbar">
-            <div class="navLeft">
-                <div>
-                    <h2><a href="/">MFS</a></h2>
+            <nav class="navbar">
+                <div class="navLeft">
+                    <div class="containerMFS">
+                        <h2><a id="MFS" href="/">MFS</a></h2>
+                    </div>
+                    <div class="containerListNavbar">
+                        <ul id="link-navbar">
+                            <li><a class="a-navbar" href="/courses">Cours</a></li>
+                            <li><a class="a-navbar" href="/articles">Articles</a></li>
+                            <li><a class="a-navbar" href="/sa-formation">Sa formation</a></li>
+                            <li><a class="a-navbar" href="/centre-de-formation">Centre de formation</a></li>
+                            <li><a class="a-navbar" href="/employeurs">Employeur</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <ul id="link-navbar">
-                        <li><a class="a-navbar" href="/courses">Cours</a></li>
-                        <li><a class="a-navbar" href="/articles">Articles</a></li>
-                        <li><a class="a-navbar" href="/sa-formation">Sa formation</a></li>
-                        <li><a class="a-navbar" href="/centre-de-formation">Centre de formation</a></li>
-                        <li><a class="a-navbar" href="/employeurs">Employeur</a></li>
+                <div class="navRight">
+                    <ul class="linkNavbarCallToAction">
+                        <li><a class="a-navbar" href="/login">Connexion</a></li>
+                        <li><a class="a-navbar" id="btn-signup" href="/signup">Inscription</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="navRight">
-                <ul>
-                    <li><a class="a-navbar" href="/login">Connexion</a></li>
-                    <li><a class="a-navbar" href="/signup">Inscription</a></li>
-                </ul>
-            </div>
-        </nav>
+            </nav>
     </header>

@@ -16,7 +16,11 @@ document.title = `MFS - ${modification_title_page(path)}`
 window.addEventListener('DOMContentLoaded', (e) => {
     Array.from(document.getElementsByClassName('a-navbar')).forEach(function(item){
         if(item.pathname === window.location.pathname){
-            item.classList.add('on_visited')
+            if(item.pathname === "/login" || item.pathname === "/signup"){
+                return
+            }else{
+                item.classList.add('on_visited')
+            }
         }else{
             item.classList.remove('on_visited')
         }
