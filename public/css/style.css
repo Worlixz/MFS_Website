@@ -1,6 +1,7 @@
 /* En dessous de 800px de large enlever l'image */
-
 /* En dessous de 800px mettre en place un menu hamburger  */
+
+@import url('../css/varAllPage.css');
 
 
 .backgroudHeroBanner{
@@ -17,7 +18,7 @@
 }
 .navbar a{
     color: #fff;
-    font-size: 1.6rem;
+    font-size: calc(10px + 0.5vw);
 }
 
 
@@ -59,6 +60,61 @@
     background-color: #BF7315;
 }
 
+/* RESPONSIVE NAVBAR  */
+
+.containerNavBarBurger{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    margin: 0 15px;
+    width: 100%;
+}
+
+#hamburger{
+    display: none;
+}
+
+.containerBurgerCallToAction{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+}
+
+.containerLinkBurger{
+    display: none;
+}
+
+.containerLinkBurgerBis{
+    flex-direction: column;
+    align-items: center;
+}
+
+.containerLinkNavbarBurger{
+    width: 100%;
+    text-align: center;
+}
+
+.linkNavbarBurger{
+    flex-direction: column;
+}
+.linkBurger{
+    margin: 30px;
+}
+.linkBurger a{
+    font-size: 1.6rem !important;
+}
+
+.hrBurger{
+    width: 250px;
+    height: 2px;
+    background-color: #fff;
+}
+
+
 /* HERO BANNER  */
 
 .heroBanner{
@@ -78,14 +134,15 @@
 }
 
 .containerHeroBannerSlogan{
-    width: 40%;
+    width: 45%;
     min-width: 350px;
-    margin-left: 50px;
+    margin-left: 2vw;
 }
 .containerHeroBannerImg{
-    width: 40%;
+    width: 45%;
     min-width: 350px;
     display: block;
+    margin-right: 2vw;
 }
 .containerHeroBannerImg img{
     object-fit: contain;
@@ -93,13 +150,18 @@
 }
 
 #formeToi{
-    font-size: 6.4rem;
+    font-size: calc(35px + 2vw);
     font-weight: 400;
     font-family: 'Allerta Stencil', sans-serif;
 }
 
 .titleHeroBanner{
-    font-size: 6.4rem;
+    font-size: calc(25px + 2vw);
+    color: #fff;
+}
+
+.sloganHeroBanner{
+    font-size: 2.4rem;
     color: #fff;
 }
 
@@ -108,6 +170,11 @@
     bottom: 10px;
     right: 50%;
     transform: translateX(50%);
+}
+@media (max-width: 1400px) {
+    .sloganHeroBanner{
+        font-size: calc(10px + 0.8vw);
+    }
 }
 
 
@@ -138,6 +205,15 @@
     .containerListNavbar{
         margin-left: 10px;
     }
+    #hamburger{
+        display: none;
+    }
+    #formeToi{
+        font-size: calc(30px + 2vw);
+    }
+    .titleHeroBanner{
+        font-size: calc(20px + 2vw);
+    }
 }
 @media (max-width: 800px) {
     .containerHeroBannerImg {
@@ -150,20 +226,245 @@
         width: 80%;
         margin: 0 auto;
     }
-    #formeToi, .titleHeroBanner{
-        font-size: 5rem;
+    #formeToi{
+        font-size: calc(35px + 4vw);
+    }
+    .titleHeroBanner{
+        font-size: calc(25px + 4vw);
+    }
+    .sloganHeroBanner{
+        font-size: calc(10px + 2vw);
     }
     .navbar a{
         font-size: 1.2rem;
     }
-  }
+    #hamburger{
+        display: block;
+    }
+    #desktop{
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+
+    #formeToi{
+        font-size: calc(35px + 4vw);
+    }
+    .titleHeroBanner{
+        font-size: calc(25px + 4vw);
+    }
+    .sloganHeroBanner{
+        font-size: calc(10px + 2vw);
+    }
+    .containerHeroBannerSlogan{
+        text-align: center;
+        width: 100%;
+        min-width: 300px;
+        display: block;
+        margin-right: 2vw;
+    }
+}
 
 
+/* Nos Cours */
 
-
-
-.footer{
+.containerCardsCours{
     width: 100%;
-    height: 100px;
-    background-color: dimgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.cards{
+    margin: 15px 15px;
+    border: 1px solid #BFB9B2;
+    border-radius: 5px;
+    width: 160px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+@media (max-width: 500px) {
+    .containerCardsCours{
+        justify-content: space-evenly;
+    }
+}
+
+.btn-courses{
+    background-color: var(--orange-1);
+    height: 40px;
+    width: 180px;
+}
+
+.containerTaFormation{
+    display: flex;
+    flex-direction: row;
+}
+
+.containerParaTaFormation{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+#backgroundOrangedesktop{
+    position: relative;
+    object-fit: contain;
+    width: 50%;
+}
+#backgroundOrangedesktop img{
+    width: 100%;
+}
+
+#backgroundOrangedesktop a{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    font-size: 3.2rem;
+}
+#backgroundOrangedesktop a img{
+    width: 100px;
+}
+#backgroundOrangeMobile{
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    #backgroundOrangedesktop a{
+        font-size: calc(10px + 2vw);
+    }
+    #backgroundOrangedesktop a img{
+        width: calc(50px + 2vw);
+    }
+}
+@media (max-width: 800px) {
+    #backgroundOrangedesktop{
+        display: none;
+    }
+    #backgroundOrangeMobile{
+        display: block;
+        background-color: var(--orange-1);
+        margin-top: 30px;
+    }
+    #backgroundOrangeMobile a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6vh 0;
+    }
+    #backgroundOrangeMobile a img{
+        width: 50px;
+    }
+    .containerTaFormation{
+        flex-direction: column;
+    }
+    .containerParaTaFormation{
+        width: 100%;
+    }
+}
+
+/* COURSES */
+
+.containerTileCourses{
+    text-align: center;
+}
+
+.containerRechercheCourses{
+    display: inline-grid;
+    margin-top: 100px;
+    margin-left: 10px;
+}
+.containerRechercheCourses label{
+    font-size: 2rem;
+    transform: translate(15px, 48px);
+    transition: .3s ease-in-out;
+}
+.containerRechercheCourses label:hover{
+    cursor: text;
+}
+.containerRechercheCourses input{
+    width: calc(200px + 10vw);
+    font-size: 1.4rem;
+    padding: 6px 12px;
+    margin-top: 20px;
+}
+.containerRechercheCourses input:focus {
+    outline: 2px solid #BF7315;
+}
+
+.grid{
+    width: 100%;
+    margin-bottom: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    justify-content: center;
+    grid-gap: 20px;
+    /* row-gap: 3rem;
+    column-gap: 2rem; */
+}
+
+.cardsCours{
+    width: 400px;
+    height: 266px;
+    background-color: var(--orange-card);
+    transition: 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+.cardsCours:hover{
+    transform: scale(1.05);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.titleAndImgArticle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 8px;
+}
+.titleAndImgArticle img{
+    width: 55%;
+}
+.titleAndImgArticle h3{
+    width: 45%;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.synopsisArticle{
+    margin: 8px;
+}
+
+.informationArticle{
+    display: flex;
+    flex-direction: row;
+    margin: 8px;
+    justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+    .grid{
+        width: 100%;
+        grid-template-columns: repeat(auto-fill, 300px);
+    }
+    .cardsCours{
+        width: 300px;
+        background-color: var(--orange-card);
+    }
 }

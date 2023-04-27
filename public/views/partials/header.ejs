@@ -10,12 +10,47 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/varAllPage.css">
     <link rel="stylesheet" href="../../css/styleLoginAndSignUp.css">
+    <link rel="stylesheet" href="../../css/styleHamburgerMenu.css">
     <script src="../../js_client/script-header.js"></script>
 </head>
 <body>
     <div class="backgroudHeroBanner">
     <header>
-            <nav class="navbar">
+            <nav class="navbar" id="hamburger">
+                <div class="containerBurgerCallToAction">
+                    <div class="containerNavBarBurger">
+                        <label for="check" class="labelBurger">
+                            <input type="checkbox" id="check"/> 
+                            <span class="spanBurger"></span>
+                            <span class="spanBurger"></span>
+                            <span class="spanBurger"></span>
+                        </label>
+                        <div class="containerMFS">
+                            <h2><a id="MFS" href="/">MFS</a></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="containerLinkBurger containerLinkBurgerBis" id="idContainerLinkBurger">
+                    <div class="containerLinkNavbarBurger">
+                        <ul id="linkNavbarBurger">
+                            <li class="linkBurger"><a class="a-navbar" href="/courses">Cours</a></li>
+                            <li class="linkBurger"><a class="a-navbar" href="/articles">Articles</a></li>
+                            <li class="linkBurger"><a class="a-navbar" href="/sa-formation">Sa formation</a></li>
+                            <!-- <li class="linkBurger"><a class="a-navbar" href="/centre-de-formation">Centre de formation</a></li>
+                            <li class="linkBurger"><a class="a-navbar" href="/employeurs">Employeur</a></li> -->
+                        </ul>
+                    </div>
+                    <hr class="hrBurger">
+                    <div class="containerLinkNavbarBurger">
+                        <ul class="linkNavbarBurger">
+                            <li class="linkBurger"><a class="a-navbar" href="/login">Connexion</a></li>
+                            <li class="linkBurger" style="margin-top: 20px;"><a class="a-navbar" id="btn-signup" href="/signup">Inscription</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <nav class="navbar" id="desktop">
                 <div class="navLeft">
                     <div class="containerMFS">
                         <h2><a id="MFS" href="/">MFS</a></h2>
@@ -25,8 +60,8 @@
                             <li><a class="a-navbar" href="/courses">Cours</a></li>
                             <li><a class="a-navbar" href="/articles">Articles</a></li>
                             <li><a class="a-navbar" href="/sa-formation">Sa formation</a></li>
-                            <li><a class="a-navbar" href="/centre-de-formation">Centre de formation</a></li>
-                            <li><a class="a-navbar" href="/employeurs">Employeur</a></li>
+                            <!-- <li><a class="a-navbar" href="/centre-de-formation">Centre de formation</a></li>
+                            <li><a class="a-navbar" href="/employeurs">Employeur</a></li> -->
                         </ul>
                     </div>
                 </div>

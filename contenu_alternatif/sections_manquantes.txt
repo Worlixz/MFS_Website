@@ -1,0 +1,16 @@
+<hr class="marginTopSection hrInterSection">
+<section class="section taFormation marginTopSection">
+    <div class="container1240">
+        <div>
+            <h2 class="text28 textBold textAlign" >4. Université ou centre de formation</h2>
+        </div>
+    </div>
+</section>
+<hr class="marginTopSection hrInterSection">
+<section class="section taFormation marginTopSection marginBottonSection">
+    <div class="container1240">
+        <div>
+            <h2 class="text28 textBold textAlign" >5. Trouve un employeur</h2>
+        </div>
+    </div>
+</section>

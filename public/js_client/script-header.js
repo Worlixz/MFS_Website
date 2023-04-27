@@ -1,4 +1,5 @@
 const path = window.location.pathname.split('/')
+
 let titlePage 
 
 // Cette fonction permet de modifier automatiquement le titre de la page en fonction de la page sur laquelle nous nous trouvons
@@ -25,4 +26,22 @@ window.addEventListener('DOMContentLoaded', (e) => {
             item.classList.remove('on_visited')
         }
     })
+
+    const navBurger = document.getElementById('hamburger')
+    const checkboxHamburger = document.getElementById('check')
+    const containerLinkBurger = document.getElementById('idContainerLinkBurger')
+    const lordIconScroll = document.getElementById('lordIconScroll')
+    checkboxHamburger.addEventListener('change', (e) => {
+        console.log(e)
+        if(e.target.checked){
+            navBurger.style.height = '100vh'
+            containerLinkBurger.style.display = 'flex'
+            lordIconScroll.style.display = 'none'
+        }else{
+            navBurger.style.height = '60px'
+            containerLinkBurger.style.display = 'none'
+            lordIconScroll.style.display = 'block'
+        }
+    })
+
 })
