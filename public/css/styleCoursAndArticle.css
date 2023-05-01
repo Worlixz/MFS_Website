@@ -1,0 +1,91 @@
+.coursAndArticle{
+    margin-bottom: 100px;
+}
+.coursAndArticle h1{
+ font-size: 2rem;
+ font-weight: 600;
+}
+.coursAndArticle h2{
+ font-size: 3.4rem;
+ display: inline;
+ z-index: 10;
+}
+.coursAndArticle h3{
+ font-size: 1.6rem;
+}
+.coursAndArticle h6{
+ font-size: 1.4rem;
+}
+.coursAndArticle li{
+ font-size: 1.6rem;
+}
+.coursAndArticle p{
+ font-size: 1.4rem;
+ font-family: 'Open Sans', sans-serif;
+ text-align: justify;
+}
+
+
+.containerImgCours{
+    margin-top: 75px;
+    text-align: center;
+    object-fit: contain;
+}
+.containerImgCours img{
+    width: 100%;
+}
+
+.containerDataCours{
+    margin: 50px 10px 0;
+}
+.divAuthRead{
+    margin-top: 25px;
+}
+.divAuthRead div:first-child{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 418px) {
+    .divAuthRead h6{
+        margin: 10px 0;
+    }
+    
+}
+.divAuthRead div:nth-child(2){
+    margin-top: 25px;
+}
+
+
+.containerZoneCours{
+    margin: 75px 10px 0;
+}
+.titleZoneCours{
+    position: relative;
+    margin-bottom: 100px;
+}
+.titleZoneCours::after{
+    content: '';
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    top: 50%;
+    bottom: 0%;
+    background-color: var(--orange-1);
+    z-index: -10;
+}
+
+.containerContent{
+    margin-top: 20px;
+}
+
+.containerSommaire{
+    margin-left: 20px;
+}
+
+.containerSommaire ul li{
+    list-style: disc;
+    margin: 5px auto;
+}

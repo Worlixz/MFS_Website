@@ -30,6 +30,10 @@ app.get('/signup', (req, res) => {
 app.get('/courses', (req, res) => {
     res.render('courses')
 })
+app.get('/cours/:id', (req, res) => {
+    const id = req.params.id.split('-').join(' ')
+    res.render('cours', {titleCours : id})
+})
 app.get('/articles', (req, res) => {
     res.render('articles')
 })
