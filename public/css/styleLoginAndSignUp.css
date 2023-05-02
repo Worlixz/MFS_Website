@@ -19,6 +19,11 @@
     border-radius: 5px;
     opacity: 0.9;
 }
+.formulaireLoginAndSignup h3{
+    color: white;
+    font-size: 2rem;
+    text-decoration: underline;
+}
 .formulaireLoginAndSignup button{
     width: 85%;
     font-size: 1.6rem;
@@ -26,6 +31,9 @@
     background-color: #BF7315;
     border: none;
     color: aliceblue;
+}
+.formulaireLoginAndSignup button:hover{
+    cursor: pointer;
 }
 
 .containerDivForm{
