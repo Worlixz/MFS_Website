@@ -18,8 +18,8 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
     res.render('index')
 })
-app.get('/dashbord', (req, res) => {
-    res.render('dashbord')
+app.get('/dashboard', (req, res) => {
+    res.render('dashboard')
 })
 app.get('/login', (req, res) => {
     res.render('login')
@@ -29,6 +29,9 @@ app.get('/signup', (req, res) => {
 })
 app.get('/courses', (req, res) => {
     res.render('courses')
+})
+app.get('/coursTest', (req, res) => {
+    res.render('coursTest')
 })
 app.get('/cours/:id', (req, res) => {
     const id = req.params.id.split('-').join(' ')

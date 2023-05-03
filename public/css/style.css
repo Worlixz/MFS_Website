@@ -461,6 +461,11 @@
 
 .synopsisArticle{
     margin: 8px;
+    max-width: 100%;
+}
+
+.resumeArticle{
+    font-size: 1.4rem;
 }
 
 .informationArticle{

@@ -225,3 +225,17 @@ li{
         border: none;
     }
 }
+
+.disabled{
+    background-color: #645a5a57;
+}
+.disabled:hover{
+    transform: none !important;
+}
+.disabledLink:hover{
+    cursor: not-allowed !important;
+}
+
+.width384{
+    width: 384px;
+}
