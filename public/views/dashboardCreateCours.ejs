@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+</div>
+    <div class="container1240">
+        <nav class="navbarDashboard">
+            <a href="/dashboard">Home</a>
+            <a href="/dashboard/cours">Gestion cours</a>
+            <a href="/dashboard/articles">Gestion articles</a>
+        </nav>
+        <div class="containerFormulaire">
+          <h2 style="margin-left: 10px;">Création d'articles : </h2>
+          <form class="formulaire" action="api/form" id="form" enctype="multipart/form-data">
+            <div class="divFormulaire">
+                <label for="">Titre du cours</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="divFormulaire">
+                <label for="">Synopsis du cours : (caractères max : <span id="caractMax"></span>)</label>
+                <textarea name="" id="resume" rows="4" cols="50" maxlength="150" required></textarea>
+            </div>
+            <div class="divFormulaire">
+                <label for="">Contenu du cours :</label>
+                <div id="editorjs"></div>
+            </div>
+            <div class="divRowsFormulaire">
+                <div class="divFormulaire divFormDuration">
+                    <label for="">Durée de lecture estimé :</label>
+                    <input type="number" id="duration" required>
+                    <p>en min</p>
+                </div>
+                <div class="divFormulaire divFormAuthor">
+                    <label for="">Auteur :</label>
+                    <input type="text" id="author" required>
+                </div>
+            </div>
+            <div class="divRowsFormulaire">
+                <div class="divFormulaire">
+                    <label for="">Abonnement nécessaire :</label>
+                    <div>
+                        <input class="inputRadioPremium" type="radio" name="premium" id="premium_true" value="true" required>
+                        <label for="premium_true" style="font-weight: 400;">Oui</label>
+                    </div>
+                    <div>
+                        <input class="inputRadioPremium" type="radio" name="premium" id="premium_false" value="false" required>
+                        <label for="premium_false" style="font-weight: 400;">Non</label>
+                    </div>
+                </div>
+                <div class="divFormulaire">
+                    <label for="">Date de mise en ligne :</label>
+                    <input type="datetime-local" id="date_parution" required>
+                </div>
+            </div>
+            
+            <input class="inputForm" type="submit" value="Envoyer">
+    
+          </form>
+        </div>
+    </div>    
+    <%- include('partials/footer') %>
+    <script type="module" src="../../js_client/script-createCoursAndArticles.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+</body>
+</html>

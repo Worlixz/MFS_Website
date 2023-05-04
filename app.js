@@ -21,6 +21,18 @@ app.get('/', (req, res) => {
 app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
+app.get('/dashboard/cours', (req, res) => {
+    res.render('dashboardAllCours')
+})
+app.get('/dashboard/cours/create', (req, res) => {
+    res.render('dashboardCreateCours')
+})
+app.get('/dashboard/articles', (req, res) => {
+    res.render('dashboardAllArticles')
+})
+app.get('/dashboard/articles/create', (req, res) => {
+    res.render('dashboardCreateArticles')
+})
 app.get('/login', (req, res) => {
     res.render('login')
 })
