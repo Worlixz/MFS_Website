@@ -37,7 +37,7 @@ export function gestionAffichageCards(grid, element){
             const title_img = document.createElement('div')
             title_img.classList.add('titleAndImgArticle')
             const img_article = document.createElement('img')
-            img_article.src = '../css/assets/Rectangle 27-1.png'
+            img_article.src = '../../upload/pexels-errin-casano-2356087_1683112795437.jpg'
             const title_article = document.createElement('h3')
             title_article.innerHTML = element.title
     

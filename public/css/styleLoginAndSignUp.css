@@ -11,7 +11,7 @@
     transform: translateY(-30px);
     width: 400px;
     height: 450px;
-    background-color: rgba(191, 115, 21, 0.1);
+    background-color: rgba(196, 165, 129, 0.13);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -21,8 +21,8 @@
 }
 .formulaireLoginAndSignup h3{
     color: white;
-    font-size: 2rem;
-    text-decoration: underline;
+    font-size: 2.4rem;
+    font-weight: 600;
 }
 .formulaireLoginAndSignup button{
     width: 85%;
@@ -41,6 +41,22 @@
     flex-direction: column;
     width: 85%;
 }
+.divInputForm{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.containerDivForm img{
+    position: absolute;
+    right: 10px;
+}
+#svgMail{
+    width: 20px;
+}
+#svgPadlock{
+    height: 20px;
+}
 .containerDivForm label{
     font-size: 1.4rem;
     color: aliceblue;
@@ -48,7 +64,19 @@
 }
 .containerDivForm input{
     font-size: 1.4rem;
-    padding: 7px;
+    padding: 7px 35px 7px 7px;
     border: none;
     border-radius: 3px;
+    width: 100%;
+}
+
+.blockSwitchSignupLogin p{
+    font-size: 1.4rem;
+    color: #fff;    
+}
+.blockSwitchSignupLogin a{
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-decoration: underline;
+    color: var(--orange-2);
 }
