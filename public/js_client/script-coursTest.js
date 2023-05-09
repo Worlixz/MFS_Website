@@ -1,6 +1,6 @@
 import { verificationDate, gestionAffichageCards } from "./script-function.js"
 const url = 'https://randomuser.me/api/?results=10'
-const urlApi = 'http://localhost:8000/api/cours'
+const urlApi = 'http://localhost:8000/api/coursTest'
 
 const grid = document.getElementById('grid')
 
