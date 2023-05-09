@@ -71,3 +71,33 @@ export function gestionAffichageCards(grid, element){
             article.append(linkGlobal)
             grid.append(article)
 }
+
+export function trainementCookie(cookie){
+    const cookies = cookie.split(';')
+    let cookieTraitement = {
+        token: '',
+        user: ''
+    }
+    cookies.forEach(element => {
+        if(element.includes('access_token')){
+            cookieTraitement.token = element.split('=')[1]
+        }
+        if(element.includes('user')){
+            cookieTraitement.user = element.split('=')[1]
+        }
+    })
+    return cookieTraitement
+}
+
+export function callDataWithLog(urlApi){
+    const token = trainementCookie(document.cookie).token
+    fetch(urlApi, {
+        headers: {Authentication: `${token}`}
+    })
+    .then(resp => resp.json())
+    .then(json => console.log(JSON.stringify(json)))
+    .catch(err => {
+        console.log(err)
+        document.location.href='/'
+    })
+}

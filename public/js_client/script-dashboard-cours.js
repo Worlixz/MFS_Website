@@ -1,14 +1,7 @@
-const urlApi = 'http://localhost:8000/api/cours'
-
+import { callDataWithLog } from './script-function.js'
+const urlApi = 'http://localhost:8000/api/dashboard'
 const container = document.getElementById('containerDashboardCandA')
 
 window.addEventListener('DOMContentLoaded', (e) => {
-  console.log(e);
-
-  fetch(urlApi)
-  .then((resp) => resp.json())
-  .then((data) => {
-    console.log(data)
-  })
-  .catch((err) => console.log(err))
+  callDataWithLog(urlApi)
 })

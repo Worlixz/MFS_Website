@@ -1,3 +1,4 @@
+import { trainementCookie } from './script-function.js'
 const path = window.location.pathname.split('/')
 
 let titlePage 
@@ -44,4 +45,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
         }
     })
 
+    const validCookie = trainementCookie(document.cookie)
+    if(validCookie){
+        console.log('v : ', validCookie)
+    }else{
+        console.log('v : ', validCookie)
+    }
+    
 })
