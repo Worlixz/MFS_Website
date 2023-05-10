@@ -1,7 +1,14 @@
-import { trainementCookie } from './script-function.js'
+import { trainementCookie, readCookie } from './script-function.js'
 const path = window.location.pathname.split('/')
 
 let titlePage 
+
+const identification = document.getElementById('identification')
+const userConnected = document.getElementById('userConnected')
+const bvnUser = document.getElementById('bvn-user')
+const bvnUserBurger = document.getElementById('bvn-user-burger')
+const identificationBurger = document.getElementById('identificationBurger')
+const userConnectedBurger = document.getElementById('userConnectedBurger')
 
 // Cette fonction permet de modifier automatiquement le titre de la page en fonction de la page sur laquelle nous nous trouvons
 function modification_title_page(path){
@@ -52,4 +59,22 @@ window.addEventListener('DOMContentLoaded', (e) => {
         console.log('v : ', validCookie)
     }
     
+    // Gestion du header en fonction du statut connecté ou non
+    if(readCookie().token){
+        identification.classList.toggle('displayNone')
+        userConnected.classList.toggle('displayBlock')
+        bvnUser.innerText = "Bienvenue, " + readCookie().userName
+        
+        identificationBurger.classList.toggle('displayNone')
+        userConnectedBurger.classList.toggle('displayBlock')
+        bvnUserBurger.innerText = "Bienvenue, " + readCookie().userName
+        
+    }else{
+        identification.classList.toggle('displayBlock')
+        userConnected.classList.toggle('displayNone')
+
+
+        identificationBurger.classList.toggle('displayBlock')
+        userConnectedBurger.classList.toggle('displayNone')
+    }
 })

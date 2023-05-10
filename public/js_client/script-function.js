@@ -74,16 +74,21 @@ export function gestionAffichageCards(grid, element){
 
 export function trainementCookie(cookie){
     const cookies = cookie.split(';')
+    console.log(cookies);
     let cookieTraitement = {
         token: '',
-        user: ''
+        userID: '',
+        userName: ''
     }
     cookies.forEach(element => {
         if(element.includes('access_token')){
             cookieTraitement.token = element.split('=')[1]
         }
-        if(element.includes('user')){
-            cookieTraitement.user = element.split('=')[1]
+        if(element.includes('userID')){
+            cookieTraitement.userID = element.split('=')[1]
+        }
+        if(element.includes('userName')){
+            cookieTraitement.userName = element.split('=')[1]
         }
     })
     return cookieTraitement
@@ -100,4 +105,25 @@ export function callDataWithLog(urlApi){
         console.log(err)
         document.location.href='/'
     })
+}
+
+export const readCookie = () => {
+    const cookie = document.cookie.split(';')
+    let cookieTraitement = {
+        token: '',
+        userID: '',
+        userName: ''
+    }
+    cookie.forEach(element => {
+        if(element.includes('access_token')){
+            cookieTraitement.token = element.split('=')[1]
+        }
+        if(element.includes('userID')){
+            cookieTraitement.userID = element.split('=')[1]
+        }
+        if(element.includes('userName')){
+            cookieTraitement.userName = element.split('=')[1]
+        }
+    })
+    return cookieTraitement
 }

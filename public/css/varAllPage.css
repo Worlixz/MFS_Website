@@ -239,3 +239,10 @@ li{
 .width384{
     width: 384px;
 }
+
+.displayNone{
+    display: none;
+}
+.displayBlock{
+    display: block;
+}

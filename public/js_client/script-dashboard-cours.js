@@ -4,4 +4,6 @@ const container = document.getElementById('containerDashboardCandA')
 
 window.addEventListener('DOMContentLoaded', (e) => {
   callDataWithLog(urlApi)
+  
+
 })
