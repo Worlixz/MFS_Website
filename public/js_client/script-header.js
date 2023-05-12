@@ -1,4 +1,4 @@
-import { trainementCookie, readCookie } from './script-function.js'
+import { parseJWT } from './script-function.js'
 const path = window.location.pathname.split('/')
 
 let titlePage 
@@ -51,30 +51,24 @@ window.addEventListener('DOMContentLoaded', (e) => {
             lordIconScroll.style.display = 'block'
         }
     })
-
-    const validCookie = trainementCookie(document.cookie)
-    if(validCookie){
-        console.log('v : ', validCookie)
-    }else{
-        console.log('v : ', validCookie)
-    }
     
-    // Gestion du header en fonction du statut connecté ou non
-    if(readCookie().token){
-        identification.classList.toggle('displayNone')
-        userConnected.classList.toggle('displayBlock')
-        bvnUser.innerText = "Bienvenue, " + readCookie().userName
-        
-        identificationBurger.classList.toggle('displayNone')
-        userConnectedBurger.classList.toggle('displayBlock')
-        bvnUserBurger.innerText = "Bienvenue, " + readCookie().userName
-        
-    }else{
-        identification.classList.toggle('displayBlock')
-        userConnected.classList.toggle('displayNone')
-
-
-        identificationBurger.classList.toggle('displayBlock')
-        userConnectedBurger.classList.toggle('displayNone')
-    }
 })
+const user = parseJWT()
+
+if(user){
+    identification.classList.toggle('displayNone')
+    userConnected.classList.toggle('displayBlock')
+    bvnUser.innerText = "Bienvenue, " + user.userName
+    
+    identificationBurger.classList.toggle('displayNone')
+    userConnectedBurger.classList.toggle('displayBlock')
+    bvnUserBurger.innerText = "Bienvenue, " + user.userName
+    console.log("user dans le header : ", user)
+}else{
+    identification.classList.toggle('displayBlock')
+    userConnected.classList.toggle('displayNone')
+
+    identificationBurger.classList.toggle('displayBlock')
+    userConnectedBurger.classList.toggle('displayNone')
+    console.log("je ne dois pas avoir de donnée user : ", user)
+}

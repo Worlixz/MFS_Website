@@ -1,6 +1,7 @@
 export function conversionDate(elementDate){
-    if(elementDate.indexOf('-') >= 0 ){
-        const date_dest = elementDate.split('-')
+    const parseDate = elementDate.split('T')[0]
+    if(parseDate.indexOf('-') >= 0 ){
+        const date_dest = parseDate.split('-')
         return date_dest[2] + ' / ' + date_dest[1] + ' / ' + date_dest[0]
     }else{
         return "Le trainement n'est pas bon"
@@ -72,58 +73,47 @@ export function gestionAffichageCards(grid, element){
             grid.append(article)
 }
 
-export function trainementCookie(cookie){
-    const cookies = cookie.split(';')
-    console.log(cookies);
-    let cookieTraitement = {
-        token: '',
-        userID: '',
-        userName: ''
-    }
-    cookies.forEach(element => {
-        if(element.includes('access_token')){
-            cookieTraitement.token = element.split('=')[1]
-        }
-        if(element.includes('userID')){
-            cookieTraitement.userID = element.split('=')[1]
-        }
-        if(element.includes('userName')){
-            cookieTraitement.userName = element.split('=')[1]
-        }
-    })
-    return cookieTraitement
-}
+
 
 export function callDataWithLog(urlApi){
-    const token = trainementCookie(document.cookie).token
+    const token = document.cookie.split('=')[1]
     fetch(urlApi, {
         headers: {Authentication: `${token}`}
     })
     .then(resp => resp.json())
-    .then(json => console.log(JSON.stringify(json)))
+    .then(json => {
+        const resJson = json
+        if(!resJson.valid){
+            document.location.href='/'
+        }        
+    })
     .catch(err => {
         console.log(err)
         document.location.href='/'
     })
 }
 
-export const readCookie = () => {
-    const cookie = document.cookie.split(';')
-    let cookieTraitement = {
-        token: '',
-        userID: '',
-        userName: ''
+export const parseJWT = () => {
+    const token = document.cookie.split('=')[1]
+    if(!token){
+        return
     }
-    cookie.forEach(element => {
-        if(element.includes('access_token')){
-            cookieTraitement.token = element.split('=')[1]
+    const base64Url = token.split(".")[1]
+    const base64 = base64Url.replace("-", "+").replace("_","/")
+    return JSON.parse(window.atob(base64))
+}
+
+
+export const parseJWTBis = () => {
+    return new Promise((resolve, reject) => {
+        const token = document.cookie.split('=')[1]
+        if(token){
+            const base64Url = token.split(".")[1]
+            const base64 = base64Url.replace("-", "+").replace("_","/")
+            resolve(JSON.parse(window.atob(base64)))
+        }else{
+            reject(console.log("pas de parsing"))
         }
-        if(element.includes('userID')){
-            cookieTraitement.userID = element.split('=')[1]
-        }
-        if(element.includes('userName')){
-            cookieTraitement.userName = element.split('=')[1]
-        }
+        
     })
-    return cookieTraitement
 }

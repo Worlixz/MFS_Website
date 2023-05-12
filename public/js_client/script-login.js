@@ -43,8 +43,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
             date = date.toUTCString();
 
             //Crée ou met à jour un cookie 'user'
-            document.cookie = `userName=${reponse2.data.u_name}; secure; expires=` + date;
-            document.cookie = `userID=${reponse2.data.id}; secure; expires=` + date;
             document.cookie = `access_token=${reponse2.access_token}; secure; expires=` + date;
 
             return document.location.href="/dashboard"

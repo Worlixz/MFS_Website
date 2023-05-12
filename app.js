@@ -42,10 +42,9 @@ app.get('/signup', (req, res) => {
 app.get('/courses', (req, res) => {
     res.render('courses')
 })
-app.get('/coursTest', (req, res) => {
-    res.render('coursTest')
-})
 app.get('/cours/:id', (req, res) => {
+    const slug = req.params.id
+    console.log("slug de l'article : ", slug)
     const id = req.params.id.split('-').join(' ')
     res.render('cours', {titleCours : id})
 })
