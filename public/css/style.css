@@ -627,7 +627,7 @@
 .inputForm:hover{
     cursor: pointer;
 }
-
+/* 
 .containerDashboardCandA{
     margin:50px 10px 0;
     display: flex;
@@ -702,4 +702,56 @@
         flex-direction: column;
         align-items: center;
     }
+} */
+
+.divCards{
+    display: flex;
+    flex-direction: row;
+    max-width: 1000px;
+    margin: 50px auto;
+    min-height: 180px;
+    max-height: 300px;
+    background: var(--orange-card);
+    border-radius: 10px;
+}
+
+.divImg{
+    min-width: 260px;
+    max-width: 260px;
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+.divImg img{
+    width: 100%;
+}
+
+.divContent{
+    margin: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.divContent h3{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.divContent p{
+ font-size: 1.6rem;
+}
+
+.divAuthDate{
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.divBtn{
+    display: inline-flex;
+}
+.divBtn button{
+    background: none;
+    border: none;
+    margin: 0 10px;
 }

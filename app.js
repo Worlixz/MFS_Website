@@ -23,13 +23,13 @@ app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
 app.get('/dashboard/cours', (req, res) => {
-    res.render('dashboardAllCours')
+    res.render('dashboardAllElements')
 })
 app.get('/dashboard/cours/create', (req, res) => {
     res.render('dashboardCreateCours')
 })
 app.get('/dashboard/articles', (req, res) => {
-    res.render('dashboardAllArticles')
+    res.render('dashboardAllElements')
 })
 app.get('/dashboard/articles/create', (req, res) => {
     res.render('dashboardCreateArticles')

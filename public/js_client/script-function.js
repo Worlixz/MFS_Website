@@ -143,45 +143,37 @@ export const trainementCoursAndArticles = (data, containerZoneCours, titleCours,
 export const gestionJwt = () => {
     const token = document.cookie.split('=')[1]
     let jwtData = parsingJWTOnly()
-    
-    // J'ai pas de token dans les cookies
-    if(!token){
-        return
-    // J'ai un clé dans les cookies mais sans token associé
-    }if(token == "undefined"){
-        return
-    }else {
-        const date = Math.trunc(Date.now()/1000)
-        if(jwtData.exp >= date){
+    const date = Math.trunc(Date.now()/1000)
+    if(jwtData.exp >= date){
 
-            fetch('http://localhost:8000/api/dashboard', {
-                headers: {Authentication: `${token}`}
-            })
-            .then(resp => resp.json())
-            .then(data => {
-                if(data.valid){
-                    return jwtData
-                }
-                else{
-                    jwtData = undefined
-                    document.cookie = "access_token="
-                    return jwtData
-                }
-            }) 
-            return jwtData
-        }else{
-            document.cookie = "access_token="
-        }
+        fetch('http://localhost:8000/api/dashboard', {
+            headers: {Authentication: `${token}`}
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.valid){
+                return jwtData
+            }
+            else{
+                jwtData = undefined
+                document.cookie = "access_token="
+                return jwtData
+            }
+        }) 
+        return jwtData
+    }else{
+        document.cookie = "access_token="
     }
 }
 
 export const parsingJWTOnly = () => {
+    const access_token = document.cookie
     const token = document.cookie.split('=')[1]
     if(!token){
-        return
+        return false
     // J'ai un clé dans les cookies mais sans token associé
-    }if(token == "undefined"){
-        return
+    }if(access_token == "access_token="){
+        return false
     }else{
         const base64Url = token.split(".")[1]
         const base64 = base64Url.replace("-", "+").replace("_","/")

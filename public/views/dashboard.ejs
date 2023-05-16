@@ -1,23 +1,10 @@
 <%- include('partials/header') %>
 </div>
     <div class="container1240" style="height: 100vh;">
-        <nav class="navbarDashboard" id="navbar-membre">
-            <a href="/dashboard">Home</a>
-        </nav>
-        <nav class="navbarDashboard" id="navbar-editor">
-            <a href="/dashboard">Home</a>
-            <a href="/dashboard/cours">Gestion cours</a>
-            <a href="/dashboard/articles">Gestion articles</a>
-        </nav>
-        <nav class="navbarDashboard" id="navbar-admin">
-            <a href="/dashboard">Home</a>
-            <a href="/dashboard/cours">Gestion cours</a>
-            <a href="/dashboard/articles">Gestion articles</a>
-            <a href="/dashboard/articles">Gestion des utilisateurs</a>
-        </nav>
+        <%- include('partials/navDashboard') %>
         <h1>Menu</h1>
     </div>
-    <script type="module" src="../js_client/script-dashboard-cours.js"></script>c
+    <script type="module" src="../js_client/script-dashboard-cours.js"></script>
     <%- include('partials/footer') %>
 </body>
 </html>
