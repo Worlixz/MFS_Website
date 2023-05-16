@@ -1,4 +1,4 @@
-import { parseJWT } from './script-function.js'
+import { gestionJwt } from './script-function.js'
 const path = window.location.pathname.split('/')
 
 let titlePage 
@@ -53,7 +53,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     
 })
-const user = parseJWT()
+const user = gestionJwt()
 
 
 if(user){

@@ -73,73 +73,6 @@ export function gestionAffichageCards(grid, element){
             grid.append(article)
 }
 
-
-
-export function callDataWithLog(urlApi){
-    const token = document.cookie.split('=')[1]
-    fetch(urlApi, {
-        headers: {Authentication: `${token}`}
-    })
-    .then(resp => resp.json())
-    .then(json => {
-        const resJson = json
-        if(!resJson.valid){
-            document.location.href='/'
-        }        
-    })
-    .catch(err => {
-        console.log(err)
-        document.location.href='/'
-    })
-}
-
-export const parseJWT = () => {
-    const token = document.cookie.split('=')[1]
-    if(!token){
-        return
-    }if(token == "undefined"){
-        return
-    }
-    else{
-        const base64Url = token.split(".")[1]
-        const base64 = base64Url.replace("-", "+").replace("_","/")
-        const jwtData = JSON.parse(window.atob(base64))
-        const dateParsing = Math.trunc(Date.now()/1000)
-        if(jwtData.exp > dateParsing){
-            return jwtData
-        }else{
-            document.cookie = "access_token="
-            return
-        }
-    }
-}
-
-export const jwtVerifyDate = (jwtData) => {
-    new Promise((resolve, reject) => {
-        if(jwtData){
-            const test = "hello"
-            return test
-        }
-        reject(console.log("gfdez"))
-    })
-    
-}
-
-
-export const parseJWTBis = () => {
-    return new Promise((resolve, reject) => {
-        const token = document.cookie.split('=')[1]
-        if(token){
-            const base64Url = token.split(".")[1]
-            const base64 = base64Url.replace("-", "+").replace("_","/")
-            resolve(JSON.parse(window.atob(base64)))
-        }else{
-            reject(console.log("pas de parsing"))
-        }
-        
-    })
-}
-
 export const trainementCoursAndArticles = (data, containerZoneCours, titleCours, authorCours, dateCours, durationCours) => {
     console.log('data complet : ', data)
     titleCours.innerText = data.title
@@ -205,4 +138,55 @@ export const trainementCoursAndArticles = (data, containerZoneCours, titleCours,
         containerZoneCours.append(div)
         console.log(element)
     })
+}
+
+export const gestionJwt = () => {
+    const token = document.cookie.split('=')[1]
+    let jwtData = parsingJWTOnly()
+    
+    // J'ai pas de token dans les cookies
+    if(!token){
+        return
+    // J'ai un clé dans les cookies mais sans token associé
+    }if(token == "undefined"){
+        return
+    }else {
+        const date = Math.trunc(Date.now()/1000)
+        if(jwtData.exp >= date){
+
+            fetch('http://localhost:8000/api/dashboard', {
+                headers: {Authentication: `${token}`}
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                if(data.valid){
+                    return jwtData
+                }
+                else{
+                    jwtData = undefined
+                    document.cookie = "access_token="
+                    return jwtData
+                }
+            }) 
+            return jwtData
+        }else{
+            document.cookie = "access_token="
+        }
+    }
+}
+
+export const parsingJWTOnly = () => {
+    const token = document.cookie.split('=')[1]
+    if(!token){
+        return
+    // J'ai un clé dans les cookies mais sans token associé
+    }if(token == "undefined"){
+        return
+    }else{
+        const base64Url = token.split(".")[1]
+        const base64 = base64Url.replace("-", "+").replace("_","/")
+        const jwtData = JSON.parse(window.atob(base64))
+        return jwtData
+
+    }
 }
