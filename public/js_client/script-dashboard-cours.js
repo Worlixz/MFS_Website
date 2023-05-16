@@ -10,6 +10,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
   callDataWithLog(urlApi)
   const user = parseJWT()
 
+  console.log('user dashboard : ',user)
   if(user.userRole === "admin"){
     navBarAdmin.classList.toggle('displayFlex')
     navBarMembre.classList.toggle('displayNone')

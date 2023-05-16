@@ -95,14 +95,12 @@ export function callDataWithLog(urlApi){
 
 export const parseJWT = () => {
     const token = document.cookie.split('=')[1]
-    console.log(token)
     if(!token){
         return
-    }
-    if(token == undefined){
+    }else if(token == "undefined"){
         return
     }
-    if(!token == undefined){
+    else{
         const base64Url = token.split(".")[1]
         const base64 = base64Url.replace("-", "+").replace("_","/")
         return JSON.parse(window.atob(base64))
@@ -121,5 +119,72 @@ export const parseJWTBis = () => {
             reject(console.log("pas de parsing"))
         }
         
+    })
+}
+
+export const trainementCoursAndArticles = (data, containerZoneCours, titleCours, authorCours, dateCours, durationCours) => {
+    console.log('data complet : ', data)
+    titleCours.innerText = data.title
+    authorCours.innerText = `Auteur : ${data.author}`
+    dateCours.innerText = `Date : ${conversionDate(data.date)}`
+    durationCours.innerText = `Durée : ${data.duration} min`
+
+    data.editor.blocks.map(element => {
+        const div = document.createElement('div')
+        div.classList.add('divContainerCours')
+
+        switch (element.type) {
+            case 'header' :
+                if(element.data.level === 1){
+                    const titleOne = document.createElement('h1')
+                    titleOne.innerText = element.data.text
+                    div.classList.add('marginTitleCours')
+                    div.append(titleOne)
+                }
+                if(element.data.level === 2){
+                    const titleTwo = document.createElement('h2')
+                    titleTwo.innerText = element.data.text
+                    div.classList.add('marginTitleCours')
+                    div.append(titleTwo)
+                }
+                if(element.data.level === 3){
+                    const titleThree = document.createElement('h3')
+                    titleThree.innerText = element.data.text
+                    div.classList.add('marginTitleCours')
+                    div.append(titleThree)
+                }
+                if(element.data.level === 4){
+                    const titleFour = document.createElement('h4')
+                    titleFour.innerText = element.data.text
+                    div.classList.add('marginTitleCours')
+                    div.append(titleFour)
+                }
+                break;
+            case 'list' :
+                const ul = document.createElement('ul')
+                element.data.items.forEach(listItem => {
+                    const li = document.createElement('li')
+                    li.innerText = listItem
+                    ul.append(li)
+                })
+                div.append(ul)
+                break;
+            case 'paragraph' : 
+                const para = document.createElement('p')
+                para.innerText = element.data.text
+                div.classList.add('marginTop30')
+                div.append(para)
+                break 
+            case 'image' : 
+                const img = document.createElement('img')
+                img.src = element.data.file.url
+                div.classList.add('divContainerCoursImg')
+                div.append(img)
+                break
+            case 'quote' :
+                break
+        }
+        containerZoneCours.append(div)
+        console.log(element)
     })
 }

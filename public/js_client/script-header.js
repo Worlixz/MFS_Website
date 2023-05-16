@@ -54,7 +54,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
 })
 const user = parseJWT()
-console.log(user)
 
 if(user){
     identification.classList.toggle('displayNone')
@@ -64,12 +63,10 @@ if(user){
     identificationBurger.classList.toggle('displayNone')
     userConnectedBurger.classList.toggle('displayBlock')
     bvnUserBurger.innerText = "Bienvenue, " + user.userName
-    console.log("user dans le header : ", user)
 }else{
     identification.classList.toggle('displayBlock')
     userConnected.classList.toggle('displayNone')
 
     identificationBurger.classList.toggle('displayBlock')
     userConnectedBurger.classList.toggle('displayNone')
-    console.log("je ne dois pas avoir de donnée user : ", user)
 }
