@@ -55,6 +55,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 })
 const user = parseJWT()
 
+
 if(user){
     identification.classList.toggle('displayNone')
     userConnected.classList.toggle('displayBlock')

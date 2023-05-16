@@ -1,4 +1,4 @@
-import { callDataWithLog, parseJWT, parseJWTBis } from './script-function.js'
+import { callDataWithLog, parseJWT } from './script-function.js'
 const urlApi = 'http://localhost:8000/api/dashboard'
 const container = document.getElementById('containerDashboardCandA')
 
@@ -9,8 +9,7 @@ const navBarEditor = document.getElementById('navbar-editor')
 window.addEventListener('DOMContentLoaded', (e) => {
   callDataWithLog(urlApi)
   const user = parseJWT()
-
-  console.log('user dashboard : ',user)
+  console.log(user)
   if(user.userRole === "admin"){
     navBarAdmin.classList.toggle('displayFlex')
     navBarMembre.classList.toggle('displayNone')

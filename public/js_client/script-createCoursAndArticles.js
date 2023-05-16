@@ -1,4 +1,3 @@
-
 let title;
 let slug;
 let resume;
@@ -10,6 +9,7 @@ let date;
 
 const form = document.getElementById('form')
 
+const imgFile = document.getElementById('imgFile')   
 const title_article = document.getElementById('title')
 const resume_article = document.getElementById('resume')
 const duration_article = document.getElementById('duration')
@@ -62,6 +62,10 @@ const editor = new EditorJS({
     }
 })
 
+
+imgFile.addEventListener('change', (e) => {
+    console.log(e)
+})
 
 title_article.addEventListener('change', (e) => {
     console.log('title : ',e.target.value)

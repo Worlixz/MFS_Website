@@ -1,6 +1,7 @@
 const express = require('express')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
+const postingImage = require('./public/je_serveur/functionPostImage')
 
 const PORT = 3000
 const app = express()
@@ -43,10 +44,7 @@ app.get('/courses', (req, res) => {
     res.render('courses')
 })
 app.get('/cours/:id', (req, res) => {
-    const slug = req.params.id
-    console.log("slug de l'article : ", slug)
-    const id = req.params.id.split('-').join(' ')
-    res.render('cours', {titleCours : id})
+    res.render('cours')
 })
 app.get('/articles', (req, res) => {
     res.render('articles')
@@ -59,6 +57,16 @@ app.get('/centre-de-formation', (req, res) => {
 })
 app.get('/employeurs', (req, res) => {
     res.render('employeur')
+})
+
+
+app.post('/upload', (req, res) => {
+    const { image } = req.files
+    console.log(image)
+    postingImage(image, req,res)
+    .then(data => {
+        res.json(data)
+    })
 })
 
 app.listen(PORT, () => {

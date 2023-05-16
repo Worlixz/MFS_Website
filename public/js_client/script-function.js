@@ -97,14 +97,32 @@ export const parseJWT = () => {
     const token = document.cookie.split('=')[1]
     if(!token){
         return
-    }else if(token == "undefined"){
+    }if(token == "undefined"){
         return
     }
     else{
         const base64Url = token.split(".")[1]
         const base64 = base64Url.replace("-", "+").replace("_","/")
-        return JSON.parse(window.atob(base64))
+        const jwtData = JSON.parse(window.atob(base64))
+        const dateParsing = Math.trunc(Date.now()/1000)
+        if(jwtData.exp > dateParsing){
+            return jwtData
+        }else{
+            document.cookie = "access_token="
+            return
+        }
     }
+}
+
+export const jwtVerifyDate = (jwtData) => {
+    new Promise((resolve, reject) => {
+        if(jwtData){
+            const test = "hello"
+            return test
+        }
+        reject(console.log("gfdez"))
+    })
+    
 }
 
 

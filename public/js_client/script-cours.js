@@ -10,6 +10,9 @@ const authorCours = document.getElementById('authorCours')
 const dateCours = document.getElementById('dateCours')
 const durationCours = document.getElementById('durationCours')
 
+const btnShare = document.getElementById('btnShare')
+const btnLike = document.getElementById('btnLike')
+
 
 const urlValid = urlApi + slug
 
@@ -28,3 +31,16 @@ fetch(urlValid)
         )
 })
 
+btnShare.addEventListener('click', e => {
+    const urlShare = document.location.href
+    console.log(urlShare)
+    if(urlShare){
+        navigator.clipboard.writeText(urlShare)
+        .then(() => {
+            alert('Url copié !')
+        })
+    }
+})
+btnLike.addEventListener('click', e => {
+    console.log(e)
+})

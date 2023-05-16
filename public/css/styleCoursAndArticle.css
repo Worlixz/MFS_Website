@@ -33,10 +33,32 @@
     flex-wrap: wrap;
 }
 
+.containerSocialCours{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 15px;
+}
+.containerSocialCours div:first-child{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.containerSocialCours p{
+    font-size: 1.6rem;
+}
+.containerSocialCours button{
+    background: none;
+    border: none;
+}
+
+#containerContent{
+    margin-bottom: 100px;
+}
 
 .divContainerCours{
     max-width: 1240px;
-    margin: 0 auto;
+    margin: 15px auto 0;
     text-align: justify;
     padding: 0 15px;
 }
@@ -71,7 +93,7 @@
 .divContainerCours li{
     font-size: 1.6rem;
     list-style: disc;
-    margin-left: 30px;
+    margin: 10px 0 0 30px;
 }
 .divContainerCoursImg{
     max-width: 900px;
