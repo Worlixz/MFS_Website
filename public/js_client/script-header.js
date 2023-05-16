@@ -54,6 +54,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
 })
 const user = parseJWT()
+console.log(user)
 
 if(user){
     identification.classList.toggle('displayNone')
