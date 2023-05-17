@@ -1,4 +1,4 @@
-import { parsingJWTOnly } from './script-function.js'
+import { gestionAcces, gestionJwt } from './script-function.js'
 const urlApi = 'http://localhost:8000/api/dashboard'
 const container = document.getElementById('containerDashboardCandA')
 
@@ -7,7 +7,7 @@ const navBarMembre = document.getElementById('navbar-membre')
 const navBarEditor = document.getElementById('navbar-editor')
 
 window.addEventListener('DOMContentLoaded', (e) => {
-  const user = parsingJWTOnly()
+  const user = gestionJwt()
   if(user){
     switch(user.userRole){
       case "admin" : 

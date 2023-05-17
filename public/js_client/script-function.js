@@ -142,9 +142,9 @@ export const trainementCoursAndArticles = (data, containerZoneCours, titleCours,
 
 export const gestionJwt = () => {
     const token = document.cookie.split('=')[1]
-    let jwtData = parsingJWTOnly()
+    let jwtData = parsingJWTOnly(token)
     const date = Math.trunc(Date.now()/1000)
-    if(jwtData.exp >= date){
+    if(token){
 
         fetch('http://localhost:8000/api/dashboard', {
             headers: {Authentication: `${token}`}
@@ -156,18 +156,24 @@ export const gestionJwt = () => {
             }
             else{
                 jwtData = undefined
-                document.cookie = "access_token="
+                cleanCookie()
                 return jwtData
             }
         }) 
         return jwtData
     }else{
-        document.cookie = "access_token="
+        cleanCookie()
     }
 }
 
-export const parsingJWTOnly = () => {
-    const access_token = document.cookie
+export const parsingJWTOnly = (token) => {
+    if(token){
+        const base64Url = token.split(".")[1]
+        const base64 = base64Url.replace("-", "+").replace("_","/")
+        const jwtData = JSON.parse(window.atob(base64))
+        return jwtData
+    }
+    /* const access_token = document.cookie
     const token = document.cookie.split('=')[1]
     if(!token){
         return false
@@ -175,10 +181,95 @@ export const parsingJWTOnly = () => {
     }if(access_token == "access_token="){
         return false
     }else{
+        
+
+    } */
+}
+
+
+export const gestionAcces = () => {
+    const token = document.cookie.split('=')[1]
+    let jwtData = null
+
+    if(token){
+        fetch('http://localhost:8000/api/dashboard', {
+            headers: {Authentication: `${token}`}
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data);
+            if(data.valid){
+                console.log('if data');
+                return jwtData = parsingJWT(token)
+            }else{
+                console.log("else data");
+                /* cleanCookie()
+                window.location.href = '/login' */
+            }
+        })
+    }else{
+        console.log("else token");
+        /* cleanCookie()
+        window.location.href = '/login'  */
+    }
+
+    /* if(!token){
+        console.log("je suis dans le if de pas de token");
+        cleanCookie()
+        return window.location.href= '/login'
+    }if(token == "undefined"){
+        console.log("je suis dans le if de undefined");
+        cleanCookie()
+    }
+    else{
+        fetch('http://localhost:8000/api/dashboard', {
+            headers: {Authentication: `${token}`}
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            if(data.valid){
+                return jwtData = parsingJWT(token)
+            }else{
+                console.log("Je suis dans le else du call");
+                cleanCookie()
+                return window.location.href= '/login'
+            }
+        })
+       return jwtData
+    } */
+}
+
+export const parsingJWT = (token) => {
+    if(token){
+        console.log(token);
+    const base64Url = token.split(".")[1]
+    const base64 = base64Url.replace("-", "+").replace("_","/")
+    const jwtData = JSON.parse(window.atob(base64))
+    return jwtData
+    }else{
+        const token = document.cookie.split('=')[1]
+        console.log(token);
         const base64Url = token.split(".")[1]
         const base64 = base64Url.replace("-", "+").replace("_","/")
         const jwtData = JSON.parse(window.atob(base64))
         return jwtData
-
     }
 }
+
+const cleanCookie = () => {
+    document.cookie = "access_token=; expires=" + new Date("1970-01-01").toUTCString() + "; path=/"
+}
+
+export const parsingHeaderJwt = () => {
+    const token = document.cookie.split('=')[1]
+    if(token){
+        const base64Url = token.split(".")[1]
+        const base64 = base64Url.replace("-", "+").replace("_","/")
+        const jwtData = JSON.parse(window.atob(base64))
+        const dataUserHeader = {
+            userName: jwtData.userName
+        }
+        return dataUserHeader
+    }
+}
+

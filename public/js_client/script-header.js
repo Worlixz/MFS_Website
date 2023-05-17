@@ -1,4 +1,4 @@
-import { gestionJwt } from './script-function.js'
+import { parsingHeaderJwt } from './script-function.js'
 const path = window.location.pathname.split('/')
 
 let titlePage 
@@ -53,9 +53,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     
 })
-const user = gestionJwt()
-
-
+const user = parsingHeaderJwt()
 if(user){
     identification.classList.toggle('displayNone')
     userConnected.classList.toggle('displayBlock')
