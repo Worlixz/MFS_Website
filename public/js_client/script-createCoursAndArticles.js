@@ -64,10 +64,11 @@ const editor = new EditorJS({
 })
 
 
-imgFile.addEventListener('change', (e) => {
+/* imgFile.addEventListener('change', (e) => {
     imgPres = imgFile
+    console.log('imgPres : ',imgPres);
 })
-
+ */
 title_article.addEventListener('change', (e) => {
     title = e.target.value
     slug = title.split(' ').join('-')
@@ -101,9 +102,12 @@ date_parution.addEventListener('change', (e) => {
 form.addEventListener('submit', (e) => {
     e.preventDefault()
     
+    const image = imgFile.files[0]
+    console.log('image : ', image);
+    console.log('imgFile : ', imgFile);
 
     let formData = new FormData()
-    formData.append('file', imgPres.files[0])
+    formData.append('files', image, 'monImage')
 
     if(window.fetch){
         fetch("http://localhost:3000/uploadImg", {
