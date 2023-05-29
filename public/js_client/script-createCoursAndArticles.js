@@ -1,3 +1,4 @@
+let imgPres;
 let title;
 let slug;
 let resume;
@@ -64,16 +65,14 @@ const editor = new EditorJS({
 
 
 imgFile.addEventListener('change', (e) => {
-    console.log(e)
+    imgPres = imgFile
 })
 
 title_article.addEventListener('change', (e) => {
-    console.log('title : ',e.target.value)
     title = e.target.value
     slug = title.split(' ').join('-')
 })
 resume_article.addEventListener('change', (e) => {
-    console.log('resume : ',e.target.value)
     resume = e.target.value
 })
 
@@ -81,24 +80,19 @@ resume_article.addEventListener('input', (e) => {
     caractMax.innerHTML = 150 - e.target.value.length
 })
 duration_article.addEventListener('change', (e) => {
-    console.log('duration : ',e.target.value)
     duration = e.target.value
 })
 author_article.addEventListener('change', (e) => {
-    console.log('author : ',e.target.value)
     author = e.target.value
 })
 premium_article_true.addEventListener('input', (e) => {
     premium = e.target.value
-    console.log('premium : ', premium)
 })
 premium_article_false.addEventListener('input', (e) => {
     premium = e.target.value
-    console.log('premium : ', premium)
 })
 
 date_parution.addEventListener('change', (e) => {
-    console.log('date_parution :',e.target.value)
     date = e.target.value
 })
 
@@ -106,6 +100,21 @@ date_parution.addEventListener('change', (e) => {
 
 form.addEventListener('submit', (e) => {
     e.preventDefault()
+    
+
+    let formData = new FormData()
+    formData.append('file', imgPres.files[0])
+
+    if(window.fetch){
+        fetch("http://localhost:3000/uploadImg", {
+            method: 'POST',
+            headers: {'Content-Type':'multipart/form-data'},
+            body: formData
+        })
+        .catch(err => console.log(err))
+    }
+
+
     editor.save()
     .then(data => {
         let data_article = {
@@ -119,7 +128,7 @@ form.addEventListener('submit', (e) => {
             date
         }
 
-        console.log(JSON.stringify(data_article))
+        console.log(data_article)
 
         if(window.fetch){
             fetch(form.action, {

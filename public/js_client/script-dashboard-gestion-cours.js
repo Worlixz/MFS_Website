@@ -56,9 +56,9 @@ function creationCards (data){
 
         const btnModif = document.createElement('button')
         btnModif.id = "btnModif"
-        btnModif.onclick = test
+        btnModif.onclick = (() => gestionBtn("Modif", element.slug))
         const lordIconModif = document.createElement('lord-icon')
-        lordIconModif.src = "https://cdn.lordicon.com/gsqxdxog.json"
+        lordIconModif.src = "https://cdn.lordicon.com/wloilxuq.json"
         lordIconModif.trigger = "hover"
         lordIconModif.colors = "primary:#121331,secondary:#f28705"
         lordIconModif.style = "width:35px;height:35px"
@@ -66,8 +66,9 @@ function creationCards (data){
 
         const btnDelete = document.createElement('button')
         btnDelete.id = "btnDelete"
+        btnDelete.onclick = (() => gestionBtn("Delete", element.slug))
         const lordIconDelete = document.createElement('lord-icon')
-        lordIconDelete.src = "https://cdn.lordicon.com/wloilxuq.json"
+        lordIconDelete.src = "https://cdn.lordicon.com/gsqxdxog.json"
         lordIconDelete.trigger = "hover"
         lordIconDelete.colors = "primary:#121331,secondary:#f28705"
         lordIconDelete.style = "width:35px;height:35px"
@@ -77,10 +78,21 @@ function creationCards (data){
         divCards.append(divImg, divContent, divBtn)
         
         containerCards.append(divCards)
-        console.log(element);
     })
 }
 
-function test(e){
-    console.log(e);
+function gestionBtn(typeBtn, slug){
+    if(typeBtn == "Modif"){
+        console.log("je suis dans le btn modif");
+        console.log(slug)
+        document.location.href = `/dashboard/cours/${slug}`
+    }
+    if(typeBtn == "Delete"){
+        console.log("je suis dans le btn delete");
+        console.log(slug)
+        if(confirm("Es-tu sûr de vouloir supprimer le cours") == true){
+            console.log("Je dois supprimer le cour");
+        }
+
+    }
 }

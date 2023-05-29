@@ -19,13 +19,18 @@ app.set('view engine', 'ejs')
 app.get('/', (req, res) => {
     res.render('index')
 })
+
+// DASHBOARD
 app.get('/dashboard', (req, res) => {
     res.render('dashboard')
 })
 app.get('/dashboard/cours', (req, res) => {
     res.render('dashboardAllElements')
 })
-app.get('/dashboard/cours/create', (req, res) => {
+app.get('/dashboard/cours/:id', (req, res) => {
+    res.render('dashboardModifCours')
+})
+app.get('/dashboard/cours-create', (req, res) => {
     res.render('dashboardCreateCours')
 })
 app.get('/dashboard/articles', (req, res) => {
@@ -34,12 +39,20 @@ app.get('/dashboard/articles', (req, res) => {
 app.get('/dashboard/articles/create', (req, res) => {
     res.render('dashboardCreateArticles')
 })
+app.get('/dashboard/users', (req, res) => {
+    res.render('dashboardGestionUsers')
+})
+
+
+/* GESTION DE CONNEXION ET INSCRIPTION */
 app.get('/login', (req, res) => {
     res.render('login')
 })
 app.get('/signup', (req, res) => {
     res.render('signUp')
 })
+
+/* GESTION DES COURS ET ARTICLES LIBRE D ACCES */
 app.get('/courses', (req, res) => {
     res.render('courses')
 })
@@ -49,8 +62,11 @@ app.get('/cours/:id', (req, res) => {
 app.get('/articles', (req, res) => {
     res.render('articles')
 })
-app.get('/sa-formation', (req, res) => {
-    res.render('saFormation')
+
+
+/* GESTION DE LA PARTIE DES FORMATIONS */
+app.get('/lesformation', (req, res) => {
+    res.render('lesFormation')
 })
 app.get('/centre-de-formation', (req, res) => {
     res.render('centreFormation')
@@ -60,6 +76,7 @@ app.get('/employeurs', (req, res) => {
 })
 
 
+/* GESTION DES IMAGES */
 app.post('/upload', (req, res) => {
     const { image } = req.files
     console.log(image)
@@ -67,6 +84,9 @@ app.post('/upload', (req, res) => {
     .then(data => {
         res.json(data)
     })
+})
+app.post('/uploadImg', (req, res) => {
+    console.log('req.files : ',req.files);
 })
 
 app.listen(PORT, () => {

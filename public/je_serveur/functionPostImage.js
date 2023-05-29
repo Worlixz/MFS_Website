@@ -1,5 +1,3 @@
-const sharp = require('sharp')
-
 function postingImage(image, req, res){
     return new Promise((resolve, reject) => {
 
@@ -16,11 +14,11 @@ function postingImage(image, req, res){
 
             if(image.mimetype.startsWith('image')){
                 console.log("J'ai une image", image)
-
+                
                 const destructuring = image.name.split('.')
 
                 const name = destructuring[0].split(' ').join('_')
-                const ext = destructuring[1]
+                const ext = destructuring[1]           
 
                 image.name = (name + '_' + Date.now() + '.' + ext)
                 const url = '/upload/' + image.name
@@ -36,5 +34,6 @@ function postingImage(image, req, res){
             }
         })
 }
+
 
 module.exports = postingImage

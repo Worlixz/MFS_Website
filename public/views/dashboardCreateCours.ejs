@@ -1,32 +1,28 @@
 <%- include('partials/header') %>
 </div>
     <div class="container1240">
-        <nav class="navbarDashboard">
-            <a href="/dashboard">Home</a>
-            <a href="/dashboard/cours">Gestion cours</a>
-            <a href="/dashboard/articles">Gestion articles</a>
-        </nav>
+        <%- include('partials/navDashboard') %>
         <div class="containerFormulaire">
           <h2 style="margin-left: 10px;">Création d'articles : </h2>
           <form class="formulaire" action="api/form" id="form" enctype="multipart/form-data">
             <div class="divFormulaire">
                 <label for="imgFile">Image de présentation du cours</label>
-                <input type="file" id="imgFile" name="imgFile" accept="image/png, image/jpeg" required>
+                <input class="marginTop15" type="file" id="imgFile" name="imgFile" accept="image/png, image/jpeg" required>
             </div>
             <hr>
             <div class="divFormulaire">
                 <label for="">Titre du cours</label>
-                <input type="text" id="title" required>
+                <input class="marginTop15" type="text" id="title" required>
             </div>
             <hr>
             <div class="divFormulaire">
                 <label for="">Synopsis du cours : (caractères max : <span id="caractMax"></span>)</label>
-                <textarea name="" id="resume" rows="4" cols="50" maxlength="150" required></textarea>
+                <textarea class="marginTop15" name="" id="resume" rows="4" cols="50" maxlength="150" required></textarea>
             </div>
             <hr>
             <div class="divFormulaire">
                 <label for="">Contenu du cours :</label>
-                <div id="editorjs"></div>
+                <div class="marginTop15" id="editorjs"></div>
             </div>
             <hr>
             <div class="divRowsFormulaire">
@@ -65,6 +61,7 @@
         </div>
     </div>    
     <%- include('partials/footer') %>
+    <script type="module" src="../js_client/script-dashboard-cours.js"></script>
     <script type="module" src="../../js_client/script-createCoursAndArticles.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
