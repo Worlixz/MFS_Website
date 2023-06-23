@@ -2,13 +2,14 @@ const express = require('express')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const postingImage = require('./public/je_serveur/functionPostImage')
+const multer = require('./public/middleware/multer-config')
 
 const PORT = 3000
 const app = express()
 
 app.use(express.static('public'))
 app.use('/upload', express.static(__dirname + '/upload'))
-app.use(fileUpload())
+/* app.use(fileUpload()) */
 app.use(express.json({limit: '50mb'}));
 app.use(cors())
 
@@ -77,7 +78,7 @@ app.get('/employeurs', (req, res) => {
 
 
 /* GESTION DES IMAGES */
-app.post('/upload', (req, res) => {
+app.post('/upload', fileUpload() ,(req, res) => {
     const { image } = req.files
     console.log(image)
     postingImage(image, req,res)
@@ -85,8 +86,10 @@ app.post('/upload', (req, res) => {
         res.json(data)
     })
 })
-app.post('/uploadImg', (req, res) => {
-    console.log('req.files : ',req.files);
+
+//utiliser multer pour la gestion des images via Fetch
+app.post('/uploadImg',multer, (req, res) => {
+    console.log('req.files : ', req.file);
 })
 
 app.listen(PORT, () => {

@@ -140,6 +140,8 @@ export const trainementCoursAndArticles = (data, containerZoneCours, titleCours,
     })
 }
 
+
+//ajouter une recherche dans les cookies 
 export const gestionJwt = () => {
     const token = document.cookie.split('=')[1]
     let jwtData = parsingJWTOnly(token)

@@ -103,21 +103,11 @@ form.addEventListener('submit', (e) => {
     e.preventDefault()
     
     const image = imgFile.files[0]
-    console.log('image : ', image);
-    console.log('imgFile : ', imgFile);
+    console.log('imgFile : ', imgFile.files[0]);
 
     let formData = new FormData()
-    formData.append('files', image, 'monImage')
-
-    if(window.fetch){
-        fetch("http://localhost:3000/uploadImg", {
-            method: 'POST',
-            headers: {'Content-Type':'multipart/form-data'},
-            body: formData
-        })
-        .catch(err => console.log(err))
-    }
-
+    formData.append('files', image)
+    console.log('formData : ',formData);
 
     editor.save()
     .then(data => {
@@ -135,7 +125,16 @@ form.addEventListener('submit', (e) => {
         console.log(data_article)
 
         if(window.fetch){
-            fetch(form.action, {
+            fetch("http://localhost:3000/uploadImg", {
+                method: 'POST',
+                headers: {
+                    'Content-Type':'multipart/form-data'
+                },
+                body: formData
+            })
+            .catch(err => console.log(err))
+
+            /* fetch("api/form", {
                 method: "POST",
                 body: JSON.stringify(data_article),
                 headers: {
@@ -145,7 +144,7 @@ form.addEventListener('submit', (e) => {
             })
             .catch(err => {
                 console.log(err)
-            })
+            }) */
         }else{
             console.log("Merci d'utiliser un navigateur à jour :) ")
         }
