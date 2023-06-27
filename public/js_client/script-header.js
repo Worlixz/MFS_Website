@@ -1,7 +1,55 @@
 import { parsingHeaderJwt } from './script-function.js'
+import { navNoUSer, navWithUser, navBurgerNoUser, navBurgerWithUser } from './navbar.js'
 const path = window.location.pathname.split('/')
 
+// Premmier tableaux les liens de navigations
+// Deuxième tableau les inscriptions ou connexion
+// Troisème tableau la gestion du profil
+const linkNavBar = [[
+    {
+        name: "Cours",
+        link: "/courses"
+    },
+    {
+        name: "Articles",
+        link: "/articles"
+    },
+    {
+        name: "Formations",
+        link: "/lesFormation"
+    }
+],[
+    {
+        name: "Connexion",
+        link: "/login"
+    },
+    {
+        name: "Inscription",
+        link: "/signup"
+    }
+],[
+    {
+        name: "Mon Profil",
+        link: "/dashboard"
+    }
+]
+    
+]
+
+
+const navbar = document.getElementById('navbar')
+const linkLeft = document.getElementById('link-navbar')
+const linkRight = document.getElementById('link-right-navbar')
+console.log(linkLeft)
+console.log(linkRight)
+
+
+
+
 let titlePage 
+
+
+
 
 const identification = document.getElementById('identification')
 const userConnected = document.getElementById('userConnected')
@@ -51,21 +99,41 @@ window.addEventListener('DOMContentLoaded', (e) => {
             lordIconScroll.style.display = 'block'
         }
     })
+
     
 })
-const user = parsingHeaderJwt()
-if(user){
-    identification.classList.toggle('displayNone')
-    userConnected.classList.toggle('displayBlock')
-    bvnUser.innerText = "Bienvenue, " + user.userName
-    
-    identificationBurger.classList.toggle('displayNone')
-    userConnectedBurger.classList.toggle('displayBlock')
-    bvnUserBurger.innerText = "Bienvenue, " + user.userName
-}else{
-    identification.classList.toggle('displayBlock')
-    userConnected.classList.toggle('displayNone')
+const user = await parsingHeaderJwt()
 
-    identificationBurger.classList.toggle('displayBlock')
-    userConnectedBurger.classList.toggle('displayNone')
+
+// Creation de la barre de navigation 
+function gestionNavBarDesktop (linkNavBar, linkLeft, linkRight) {
+    const fctLinkNavBar = linkNavBar
+
+    fctLinkNavBar[0].forEach(element => {
+        const li = document.createElement('li')
+        li.innerHTML = `<a class="a-navbar" href="${element.link}">${element.name}</a>`
+        linkLeft.append(li)
+    });
+
+    if(user){
+        fctLinkNavBar[2].forEach(element => {
+            const li = document.createElement('li')
+            li.innerHTML = `<a class="a-navbar" href="${element.link}">${element.name}</a>`
+            linkRight.append(li)
+        });
+    }else{
+        fctLinkNavBar[1].forEach(element => {
+            const li = document.createElement('li')
+            li.innerHTML = `<a class="a-navbar" href="${element.link}">${element.name}</a>`
+            if(element.name == "Inscription"){
+                li.innerHTML = `<a class="a-navbar" id="btn-signup" href="${element.link}">${element.name}</a>`
+            }else{
+                li.innerHTML = `<a class="a-navbar" href="${element.link}">${element.name}</a>`
+            }
+            linkRight.append(li)
+        });
+    }
+
 }
+
+gestionNavBarDesktop(linkNavBar, linkLeft, linkRight)

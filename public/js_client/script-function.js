@@ -177,7 +177,7 @@ export const parsingJWTOnly = (token) => {
     }
 }
 
-const cleanCookie = () => {
+const cleanCookie = () => {vscode
     document.cookie = "access_token=; expires=" + new Date("1970-01-01").toUTCString() + "; path=/"
 }
 
@@ -194,3 +194,10 @@ export const parsingHeaderJwt = () => {
     }
 }
 
+export const gestionConnexion = {
+    
+}
+
+export const affichageCards = {
+    
+}
