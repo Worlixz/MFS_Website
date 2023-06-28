@@ -18,6 +18,11 @@ const callDB = {
         }catch (e) {
             console.log(e)
         }
+    }, 
+
+    disconnection () {
+        document.cookie = "MFS_Token_4a6d908a="
+        return window.location.href = '/'
     }
 } 
     
@@ -28,6 +33,7 @@ const right = document.getElementById('rightUl')
 const rightb = document.getElementById('rightUlB')
 const checkbox = document.getElementById('check')
 const allLinkB = document.getElementById('allLinkB')
+
 
 
 
@@ -101,12 +107,12 @@ async function creationNavBar (dataLink, navbar, left, leftB, right, rightb, che
                     const dataUser = `
                         <li><a class="linkNavBar" href="/dashboard">${user.userName
                         }</a></li>
-                        <li><a id="btn-disconnection" class="linkNavBar" href="/deco">Déconnexion</a></li>
+                        <li><a id="btn-disconnection" class="linkNavBar">Déconnexion</a></li>
                     `
                     const dataUserB = `
                         <li><a class="linkNavBar" href="/dashboard">${user.userName
                         }</a></li>
-                        <li><a id="btn-disconnection" class="linkNavBar" href="/deco">Déconnexion</a></li>
+                        <li><a id="btn-disconnection" class="linkNavBar">Déconnexion</a></li>
                     `
 
                     rightb.innerHTML = dataUserB
@@ -141,3 +147,11 @@ async function creationNavBar (dataLink, navbar, left, leftB, right, rightb, che
 }
 
 creationNavBar(dataLink, navbar, left, leftB, right, rightb, checkbox, allLinkB)
+
+
+window.addEventListener('DOMContentLoaded', (e) => {
+    const linkDisconnection = document.getElementById('btn-disconnection')
+    linkDisconnection.addEventListener('click', (e) => {
+        callDB.disconnection()
+    })
+})
