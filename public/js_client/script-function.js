@@ -194,10 +194,28 @@ export const parsingHeaderJwt = () => {
     }
 }
 
-export const gestionConnexion = {
-    
-}
+export const cookieGestion = {
+    async parsingCookie (cookie) {
+        const fctCookie = await cookie
+        console.log("fctCookie : ",fctCookie)
 
-export const affichageCards = {
-    
+        try{
+            if(fctCookie){
+                console.log("je rentre dans le if")
+                const base64Url = fctCookie.split(".")[1]
+                const base64 = base64Url.replace("-", "+").replace("_","/")
+                const jwtData = JSON.parse(window.atob(base64))
+                const dataUserHeader = {
+                    userName: jwtData.userName
+                }
+            return dataUserHeader
+            }else{
+                return false
+            }
+        }catch(e){
+            console.log(e)
+        }
+        
+        
+    }
 }

@@ -59,6 +59,9 @@
     padding: 13px 15px;
     background-color: #BF7315;
 }
+.activeLink {
+    color: #BF7315;
+}
 
 /* RESPONSIVE NAVBAR  */
 

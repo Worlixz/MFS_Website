@@ -1,0 +1,216 @@
+/* RESET  */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+
+/* Classe générique */
+
+.displayFlex{
+    display: flex !important;
+}
+
+.displayAllLinkB{
+    display: flex !important;
+}
+
+hr{
+    border: 1px solid black;
+    width: 50vw;
+    margin: 0 auto;
+}
+
+.linkNavBar{
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+/* Mise en place de l'architecture */
+
+#navbar{
+    height: 80px;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#navbar a{
+    color: #fff;
+    font-size: calc(10px + 0.5vw);
+}
+
+#desktop, #burger{
+    flex-direction: row;
+    width: 100vw;
+    height: 80px;
+    background-color: rgba(rgba(73, 56, 56, 0.397), green, blue, alpha);
+}
+
+#desktop{
+    display: flex;
+    justify-content: space-between;
+}
+#burger{
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.leftD{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 2;
+    margin-left: 20px;
+}
+.nav-div2{
+    margin-left: 20px;
+}
+.nav-div2 ul{
+    display: flex;
+    flex-direction: row;
+}
+.nav-div2 ul li{
+    margin: 0 20px;
+}
+.rightD{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    margin-right: 20px;
+}
+.rightD ul{
+    display: flex;
+    flex-direction: row;
+}
+.rightD ul li{
+    margin: 0 20px;
+}
+
+.nav-div3, .nav-div4{
+    margin: 0 20px;
+}
+
+#btn-signup{
+    padding: 13px 15px;
+    background-color: #BF7315;
+}
+#btn-disconnection{
+    padding: 13px 15px;
+    background-color: #8a1818;
+}
+#MFS{
+    font-size: 3rem !important;
+}
+
+
+/* Adaptations par rapport aux écrans */
+
+@media (max-width: 800px) {
+    #desktop{
+        display: none;
+    }
+    #burger{
+        display: flex;
+    }
+    .leftUlB li, .rightUlB li{
+        margin: 20px 0;
+    }
+  }
+
+
+/* Gestion d'une partie du clic via le CSS */
+
+.labelBurger{
+    display:flex;
+     flex-direction:column;
+     width:50px;
+     cursor:pointer;
+}
+   
+.labelBurger span{
+    background: #fff;
+    border-radius:10px;
+    height:3px;
+    margin: 5px 0;
+    transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+}
+
+.nav-div5{
+    display: none;
+    position: absolute;
+    top: 100px;
+    height: calc(100vh - 80px);
+    flex-direction: column;
+    width: 100vw;
+    text-align: center;
+    background-color: burlywood;
+}
+
+.spanBurger:nth-of-type(1){
+    width:50%;
+    
+}
+
+.spanBurger:nth-of-type(2){
+    width:100%;
+}
+
+
+.spanBurger:nth-of-type(3){
+    width:75%;
+
+}
+
+
+#check[type="checkbox"]{
+    display:none;
+}
+
+
+#check[type="checkbox"]:checked ~ span:nth-of-type(1){
+    transform-origin:bottom;
+    transform:rotatez(45deg) translate(6px,-2px)
+}
+
+
+#check[type="checkbox"]:checked ~ span:nth-of-type(2){
+    
+    transform-origin:top;
+    transform:rotatez(-45deg)
+}
+
+
+#check[type="checkbox"]:checked ~ span:nth-of-type(3){
+    transform-origin:bottom;
+    width:50%;
+    transform: translate(23px,-7px) rotatez(45deg);
+}
+
+/* ANIMATION */
+
+.animationBurger {
+    animation: .4s ease-in burgerTransition;
+}
+
+@keyframes burgerTransition {
+    from {
+        /* pushes the sun down past the viewport */
+        transform: translateX(110vw);
+    }
+    to {
+        /* returns the sun to its default position */
+        transform: translateX(0);
+    }
+}

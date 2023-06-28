@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             date = date.toUTCString();
 
             //Crée ou met à jour un cookie 'user'
-            document.cookie = `access_token=${reponse2.access_token}; secure; expires=` + date;
+            document.cookie = `MFS_Token_4a6d908a=${reponse2.access_token}; secure; expires=` + date;
 
             return document.location.href="/dashboard"
         })
