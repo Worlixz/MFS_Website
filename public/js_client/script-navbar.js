@@ -102,7 +102,6 @@ async function creationNavBar (dataLink, navbar, left, leftB, right, rightb, che
         callDB
             .affichageUserNavBar()
             .then(user => {
-                console.log("user dans le try : ",user)
                 if(user){
                     const dataUser = `
                         <li><a class="linkNavBar" href="/dashboard">${user.userName

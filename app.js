@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const postingImage = require('./public/je_serveur/functionPostImage')
 const multer = require('./public/middleware/multer-config')
+const auth_client = require('./public/middleware/auth_client')
 
 const PORT = 3000
 const app = express()
@@ -22,7 +23,7 @@ app.get('/', (req, res) => {
 })
 
 // DASHBOARD
-app.get('/dashboard', (req, res) => {
+app.get('/dashboard',auth_client , (req, res) => {
     res.render('dashboard')
 })
 app.get('/dashboard/cours', (req, res) => {

@@ -37,7 +37,6 @@ hr{
 
 #navbar{
     height: 80px;
-    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -108,6 +107,12 @@ hr{
 #btn-disconnection{
     padding: 13px 15px;
     background-color: #8a1818;
+    transition: ease-in-out .2s;
+}
+#btn-disconnection:hover{
+    cursor: pointer;
+    background-color: #8a3b3b;
+    transition: ease-in-out .2s;
 }
 #MFS{
     font-size: 3rem !important;

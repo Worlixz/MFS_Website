@@ -1,3 +1,7 @@
+const apiDashboard = 'http://localhost:8000/api/dashboard'
+
+
+
 export function conversionDate(elementDate){
     const parseDate = elementDate.split('T')[0]
     if(parseDate.indexOf('-') >= 0 ){
@@ -177,10 +181,10 @@ export const parsingJWTOnly = (token) => {
     }
 }
 
-const cleanCookie = () => {vscode
+/* const cleanCookie = () => {
     document.cookie = "access_token=; expires=" + new Date("1970-01-01").toUTCString() + "; path=/"
 }
-
+ */
 export const parsingHeaderJwt = () => {
     const token = document.cookie.split('=')[1]
     if(token){
@@ -197,8 +201,6 @@ export const parsingHeaderJwt = () => {
 export const cookieGestion = {
     async parsingCookie (cookie) {
         const fctCookie = await cookie
-        console.log("fctCookie : ",fctCookie)
-
         try{
             if(fctCookie){
                 console.log("je rentre dans le if")
@@ -215,7 +217,54 @@ export const cookieGestion = {
         }catch(e){
             console.log(e)
         }
+    },
+
+    cleanCookie () {
+        document.cookie = "MFS_Token_4a6d908a=; expires=" + new Date("1970-01-01").toUTCString() + "; path=/"
+    }
+    
+}
+
+export const dashboardUser = {
+    async verificationUser () {
+        const token = document.cookie.split("MFS_Token_4a6d908a=")[1]
         
-        
+        try{
+            if(await token){
+                fetch(apiDashboard, {
+                    headers: {Authentication: `${token}`}
+                })
+                .then(resp => resp.json())
+                .then(validation => {
+                    console.log('autorisation : ', validation)
+                    return validation
+                })
+            }
+        }catch(e){
+            console.log(e)
+        }
+    },
+
+    async paramUser (){
+        const token = document.cookie.split("MFS_Token_4a6d908a=")[1]
+        const fctCookie = await token 
+        try{
+            if(fctCookie){
+                console.log("je rentre dans le if")
+                const base64Url = fctCookie.split(".")[1]
+                const base64 = base64Url.replace("-", "+").replace("_","/")
+                const jwtData = JSON.parse(window.atob(base64))
+                const dataUserHeader = {
+                    userName: jwtData.userName,
+                    userRule: jwtData.userRole,
+                    userStatut: jwtData.userStatut
+                }
+            return dataUserHeader
+            }else{
+                return false
+            }
+        }catch(e){
+            console.log(e)
+        }
     }
 }

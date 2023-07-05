@@ -1,6 +1,14 @@
+import { cookieGestion } from "./script-function.js"
+
 const urlApi = 'http://localhost:8000/api/login'
 const formulaire = document.getElementById('formLogin')
 const btnLogin = document.getElementById('btn-login')
+
+const query = window.location.search.split('?redirection=')[1]
+if(query){
+    cookieGestion.cleanCookie()
+    window.location.href = "/login"
+}
 
 
 
