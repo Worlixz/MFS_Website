@@ -21,7 +21,7 @@ const linkNavBarDashboard = [
         role: ["editeur", "admin"]
     },
     {
-        name: "Gestion des utilisateur",
+        name: "Gestion des utilisateurs",
         link: "/dashboard/users",
         role: ["admin"]
     }

@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+</div>
+    <div class="container1240" style="min-height: 100vh;">
+        <%- include('partials/navDashboard') %>
+        <div class="containerFormulaire">
+            <div class="ctn-choix">
+                <h3>Que souhaite tu créer ?</h3>
+                <div>
+                    <button type="button" value="cours" id="btnCours">Cours</button>
+                    <button type="button" value="article" id="btnArticle">Article</button>
+                </div>
+            </div>
+            <div class="ctnFormGlobal displayNone" id="ctnDivCreate">
+                <form action="" id="formImg">
+                </form>
+                <hr>
+                <form action="" id="formContent">
+                    <!-- <div class="divFormulaire">
+                        <label for="">Titre du cours</label>
+                        <input class="marginTop15" type="text" id="title" required>
+                    </div>
+                    <hr>
+                    <div class="divFormulaire">
+                        <label for="">Synopsis du cours : (caractères max : <span id="caractMax"></span>)</label>
+                        <textarea class="marginTop15" name="" id="resume" rows="4" cols="50" maxlength="150" required></textarea>
+                    </div>
+                    <hr>
+                    <div class="divFormulaire">
+                        <label for="">Contenu du cours :</label>
+                        <div class="marginTop15" id="editorjs"></div>
+                    </div>
+                    <hr>
+                    <div class="divRowsFormulaire">
+                        <div class="divFormulaire divFormDuration">
+                            <label for="">Durée de lecture estimé :</label>
+                            <input type="number" id="duration" required>
+                            <p>en min</p>
+                        </div>
+                        <div class="divFormulaire divFormAuthor">
+                            <label for="">Auteur :</label>
+                            <input type="text" id="author" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="divRowsFormulaire">
+                        <div class="divFormulaire">
+                            <label for="">Abonnement nécessaire :</label>
+                            <div>
+                                <input class="inputRadioPremium" type="radio" name="premium" id="premium_true" value="true" required>
+                                <label for="premium_true" style="font-weight: 400;">Oui</label>
+                            </div>
+                            <div>
+                                <input class="inputRadioPremium" type="radio" name="premium" id="premium_false" value="false" required>
+                                <label for="premium_false" style="font-weight: 400;">Non</label>
+                            </div>
+                        </div>
+                        <div class="divFormulaire">
+                            <label for="">Date de mise en ligne :</label>
+                            <input type="datetime-local" id="date_parution" required>
+                        </div>
+                    </div> -->
+                </form>
+                <div class="divBtnForm">
+                    <button class="btn-EnvoyerForm" id="btnSubmit">Envoyer</button>
+                </div>
+            </div>
+        </div> 
+        
+    </div>
+
+</div>    
+    <%- include('partials/footer') %>
+    <script type="module" src="../js_client/navDashboard.js"></script>
+    <script type="module" src="../js_client/createCoursArticles.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+</body>
+</html>

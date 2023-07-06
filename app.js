@@ -33,7 +33,7 @@ app.get('/dashboard/cours/:id', (req, res) => {
     res.render('dashboardModifCours')
 })
 app.get('/dashboard/create', (req, res) => {
-    res.render('dashboardCreateCours')
+    res.render('dashboardCreate')
 })
 app.get('/dashboard/articles', (req, res) => {
     res.render('dashboardAllElements')

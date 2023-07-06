@@ -203,7 +203,6 @@ export const cookieGestion = {
         const fctCookie = cookie
         try{
             if(fctCookie){
-                console.log("je rentre dans le if")
                 const base64Url = fctCookie.split(".")[1]
                 const base64 = base64Url.replace("-", "+").replace("_","/")
                 const jwtData = JSON.parse(window.atob(base64))
@@ -249,7 +248,6 @@ export const dashboardUser = {
         const fctCookie = await token 
         try{
             if(fctCookie){
-                console.log("je rentre dans le if")
                 const base64Url = fctCookie.split(".")[1]
                 const base64 = base64Url.replace("-", "+").replace("_","/")
                 const jwtData = JSON.parse(window.atob(base64))
