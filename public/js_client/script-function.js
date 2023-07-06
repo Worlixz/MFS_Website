@@ -200,7 +200,7 @@ export const parsingHeaderJwt = () => {
 
 export const cookieGestion = {
     async parsingCookie (cookie) {
-        const fctCookie = await cookie
+        const fctCookie = cookie
         try{
             if(fctCookie){
                 console.log("je rentre dans le if")
@@ -236,7 +236,6 @@ export const dashboardUser = {
                 })
                 .then(resp => resp.json())
                 .then(validation => {
-                    console.log('autorisation : ', validation)
                     return validation
                 })
             }

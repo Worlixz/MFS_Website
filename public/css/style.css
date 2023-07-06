@@ -489,7 +489,9 @@
     }
 }
 
-.navbarDashboard{
+/* NAVBAR DASHBOARD */
+
+/* .navbarDashboard{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -516,6 +518,36 @@
     border-radius: 5px;
 }
 .navbarDashboard button:hover{
+    cursor: pointer;
+} */
+
+#navbarDashboard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navDashLeft ul{
+    display: flex;
+    flex-direction: row;
+}
+.navDashLeft ul li{
+    margin: 15px 5px;
+}
+.navDashLeft ul li a{
+    padding: 10px 15px;
+    font-size: 1.4rem;
+}
+.navDashRight button{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #00bbff;
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+}
+.navDashRight button:hover{
     cursor: pointer;
 }
 
