@@ -10,7 +10,8 @@ module.exports = (req, res, next) => {
     if(req.headers.cookie){
         token = req.headers.cookie.split("MFS_Token_4a6d908a=")[1]
 
-       verificationUser(token)
+        // Ajouter une potentiel vérification des droits pour accéder à certains URL
+        verificationUser(token)
         .then(resp => {
             if(!resp){
                 // Le nettoyage des cookies est gérée par la partie front grace au passage du paramètre

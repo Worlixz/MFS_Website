@@ -1,3 +1,6 @@
+const urlPostImgPres = "http://localhost:3000/uploadimgpres"
+const urlPostImgEditor  = "http://localhost:3000/uploadimgeditor"
+
 const btnCours = document.getElementById('btnCours')
 const btnArticle = document.getElementById('btnArticle')
 const ctnDivCreate = document.getElementById('ctnDivCreate')
@@ -102,6 +105,7 @@ function formContent (typeBtn) {
 
 function eventLister(){
 
+    let imgPres
     let title;
     let slug;
     let resume;
@@ -164,6 +168,10 @@ function eventLister(){
         }
     })
 
+    imgFile.addEventListener('change', (e) => {
+        imgPres = imgFile
+    })
+
     title_article.addEventListener('change', (e) => {
         title = e.target.value
         slug = title.split(' ').join('-')
@@ -200,12 +208,34 @@ function eventLister(){
     })
 
     btnSubmit.addEventListener('click', (e) => {
-        formImg.submit()
-        /* formCtn.submit() */
-    })
+        let formData = new FormData()
+        formData.append('img', imgPres)
+        postImgPres(formData)
+        .then(resp => console.log("resp : ",resp.json()))
+        .then(path => console.log("path : ", path))
 
-    formImg.addEventListener('submit', (e) => {
-        e.preventDefault()
-        console.log(e)
     })
+    
+    
+}
+
+
+
+async function postImgPres(formData){
+    try{
+        return new Promise((resolve, reject) => {
+            if(window.fetch){
+                fetch(urlPostImgPres, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(resp => console.log(resp.json()))
+                .then(urlImgPres => {
+                    resolve(urlImgPres)
+                })
+            }
+        })
+    }catch(e){
+        console.log(e)
+    }
 }

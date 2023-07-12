@@ -2,8 +2,28 @@ const express = require('express')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const postingImage = require('./public/je_serveur/functionPostImage')
-const multer = require('./public/middleware/multer-config')
+const multer = require('multer')
 const auth_client = require('./public/middleware/auth_client')
+
+const MIME_TYPES = {
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpg',
+    'image/png': 'png'
+};
+
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "./upload")
+    },
+    filename: (req, file, callback) => {
+        const name = file.originalname.split(' ').join('_')
+        const extension = MIME_TYPES[file.mimetype]
+        callback(null, name + Date.now() + "." + extension)
+    }
+})
+let upload = multer({storage : storage}).single('image')
+
+
 
 const PORT = 3000
 const app = express()
@@ -26,22 +46,22 @@ app.get('/', (req, res) => {
 app.get('/dashboard',auth_client , (req, res) => {
     res.render('dashboard')
 })
-app.get('/dashboard/cours', (req, res) => {
+app.get('/dashboard/cours',auth_client, (req, res) => {
     res.render('dashboardAllElements')
 })
-app.get('/dashboard/cours/:id', (req, res) => {
+app.get('/dashboard/cours/:id',auth_client, (req, res) => {
     res.render('dashboardModifCours')
 })
-app.get('/dashboard/create', (req, res) => {
+app.get('/dashboard/create',auth_client, (req, res) => {
     res.render('dashboardCreate')
 })
-app.get('/dashboard/articles', (req, res) => {
+app.get('/dashboard/articles',auth_client, (req, res) => {
     res.render('dashboardAllElements')
 })
-app.get('/dashboard/articles/create', (req, res) => {
+app.get('/dashboard/articles/create',auth_client, (req, res) => {
     res.render('dashboardCreateArticles')
 })
-app.get('/dashboard/users', (req, res) => {
+app.get('/dashboard/users',auth_client, (req, res) => {
     res.render('dashboardGestionUsers')
 })
 
@@ -95,4 +115,30 @@ app.post('/uploadImg',multer, (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`Je suis lancé sur le port : ${PORT}`)
+})
+
+// Nouveau traitement des images pour les formulaires //
+
+/* Sur cette route seront poster les images de présentation des articles et cours
+elle doivent être stocker dans le dossier upload/picture_SD et upload/picture_HD après un traitement pour bloquer la taille max
+la fonction doit aussi renvoyer l'url des deux stokages afin de permettre le post du formulaire complet */
+app.post('/uploadimgpres', (req, res) => {
+    upload(req, res, function(err, result){
+        if(err){
+            res.end("Erreur dans le téléchargement de l'image", err)
+        }
+        let path = req.file.path
+        res.end("Le fichier est bien téléchargé ")
+        return path
+    })
+})
+
+app.post('/uploadimgeditor', (req, res) => {
+    console.log()
+})
+
+
+// ROUTE Test 
+app.get('/test', (req, res) => {
+    res.render('test')
 })
