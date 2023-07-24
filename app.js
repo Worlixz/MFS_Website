@@ -1,9 +1,10 @@
 const express = require('express')
-const fileUpload = require('express-fileupload')
+/* const fileUpload = require('express-fileupload') */
 const cors = require('cors')
 const postingImage = require('./public/je_serveur/functionPostImage')
 const multer = require('multer')
 const auth_client = require('./public/middleware/auth_client')
+/* const multer = require('./public/middleware/multer-config') */
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -99,11 +100,12 @@ app.get('/employeurs', (req, res) => {
 
 
 /* GESTION DES IMAGES */
-app.post('/upload', fileUpload() ,(req, res) => {
+app.post('/upload', /* fileUpload() */ (req, res) => {
     const { image } = req.files
     console.log(image)
     postingImage(image, req,res)
     .then(data => {
+        console.log('data : ', data)
         res.json(data)
     })
 })
@@ -127,14 +129,43 @@ app.post('/uploadimgpres', (req, res) => {
         if(err){
             res.end("Erreur dans le téléchargement de l'image", err)
         }
-        let path = req.file.path
-        res.end("Le fichier est bien téléchargé ")
-        return path
+        let url = req.file.path
+        console.log("path : ", url)
+        const data = {
+            success: 1,
+            file: {
+                url
+            } 
+        }
+        console.log(data)
+        res.end("Le fichier est bien téléchargé")
+        return url
     })
 })
 
 app.post('/uploadimgeditor', (req, res) => {
-    console.log()
+    upload(req, res, async function(err, result){
+        new Promise((resolve, reject) => {
+            if(err){
+                res.end("Erreur dans le téléchargement de l'image")
+            }
+            const url = req.file.path
+            let data = {
+                success: 1,
+                file: { url }
+            }
+            resolve(data)
+        })
+        .then(data => {
+            console.log("data_bis : ", data)
+            return res.json(data)
+        })
+    })
+    /* test(res,res)
+    .then(data => console.log('je suis dans data : ', data)) */
+
+    // Je dois récupérer data à cet endroit de manière asynchrone 
+    // Sachant que dans le cas le fichier est bien enregistré il manque uniquement le retour des données
 })
 
 
@@ -142,3 +173,39 @@ app.post('/uploadimgeditor', (req, res) => {
 app.get('/test', (req, res) => {
     res.render('test')
 })
+
+/* async function postingWithMulter(err, result){
+    return new Promise((resolve, reject) => {
+        if(err){
+            res.end("Erreur dans le téléchargement")
+        }
+        const url = req.file.path
+        let data = {
+            success: 1,
+            file : { url }
+        }
+        resolve(data)
+    })
+} */
+
+async function test(req, res){
+    return new Promise((resolve, reject) => {
+        upload(req,res, async function(err, result){
+            new Promise((resolve, reject) => {
+                if(err){
+                    res.end("Erreur dans le téléchargement de l'image")
+                }
+                const url = req.file.path
+                let data = {
+                    success: 1,
+                    file: { url }
+                }
+                resolve(data)
+            })
+            .then(data => {
+                console.log("data_bis : ", data)
+                return res.json(data)
+            })
+        })
+    })
+}

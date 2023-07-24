@@ -160,9 +160,11 @@ function eventLister(){
                 config: {
                     // En passant par cette méthode l'image est bien enregistré en local mais il n'u a aucun retour afin de EditorJS puisse prendre connaissance de l'upload de l'image
                     endpoints: {
-                        byFile: "http://localhost:3000/upload",
+                        //byFile: "http://localhost:3000/upload",
+                        //byFile: "http://localhost:3000/uploadimgpres",
+                        byFile: "http://localhost:3000/uploadimgeditor"
                         
-                    },
+                    }
                 }
             } 
         }
