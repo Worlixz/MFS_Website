@@ -143,7 +143,11 @@ app.post('/uploadimgpres', (req, res) => {
     })
 })
 
+
+/* Lors du post du cette route je doit renvoyer data afin que editorjs puisse avoir connaissance de l'url ainsi que du success de l'enregistrement */
+/* Le retour doit être identique que sur le route "/upload" que je ne peut pas utiliser car je dois ensuite utiliser sharp pour redimensionner les images */
 app.post('/uploadimgeditor', (req, res) => {
+    // Pourquoi je peux passer des paramètres à upload sachant que ce n'est pas une fonction ? 
     upload(req, res, async function(err, result){
         new Promise((resolve, reject) => {
             if(err){
@@ -161,9 +165,6 @@ app.post('/uploadimgeditor', (req, res) => {
             return res.json(data)
         })
     })
-    /* test(res,res)
-    .then(data => console.log('je suis dans data : ', data)) */
-
     // Je dois récupérer data à cet endroit de manière asynchrone 
     // Sachant que dans le cas le fichier est bien enregistré il manque uniquement le retour des données
 })
@@ -187,25 +188,3 @@ app.get('/test', (req, res) => {
         resolve(data)
     })
 } */
-
-async function test(req, res){
-    return new Promise((resolve, reject) => {
-        upload(req,res, async function(err, result){
-            new Promise((resolve, reject) => {
-                if(err){
-                    res.end("Erreur dans le téléchargement de l'image")
-                }
-                const url = req.file.path
-                let data = {
-                    success: 1,
-                    file: { url }
-                }
-                resolve(data)
-            })
-            .then(data => {
-                console.log("data_bis : ", data)
-                return res.json(data)
-            })
-        })
-    })
-}
