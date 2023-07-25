@@ -124,7 +124,7 @@ app.listen(PORT, () => {
 /* Sur cette route seront poster les images de présentation des articles et cours
 elle doivent être stocker dans le dossier upload/picture_SD et upload/picture_HD après un traitement pour bloquer la taille max
 la fonction doit aussi renvoyer l'url des deux stokages afin de permettre le post du formulaire complet */
-app.post('/uploadimgpres', (req, res) => {
+app.post('/uploadimgpres', upload ,(req, res) => {
     upload(req, res, function(err, result){
         if(err){
             res.end("Erreur dans le téléchargement de l'image", err)
@@ -146,45 +146,42 @@ app.post('/uploadimgpres', (req, res) => {
 
 /* Lors du post du cette route je doit renvoyer data afin que editorjs puisse avoir connaissance de l'url ainsi que du success de l'enregistrement */
 /* Le retour doit être identique que sur le route "/upload" que je ne peut pas utiliser car je dois ensuite utiliser sharp pour redimensionner les images */
-app.post('/uploadimgeditor', (req, res) => {
-    // Pourquoi je peux passer des paramètres à upload sachant que ce n'est pas une fonction ? 
-    upload(req, res, async function(err, result){
-        new Promise((resolve, reject) => {
-            if(err){
-                res.end("Erreur dans le téléchargement de l'image")
-            }
-            const url = req.file.path
-            let data = {
-                success: 1,
-                file: { url }
-            }
-            resolve(data)
-        })
-        .then(data => {
-            console.log("data_bis : ", data)
-            return res.json(data)
-        })
-    })
-    // Je dois récupérer data à cet endroit de manière asynchrone 
-    // Sachant que dans le cas le fichier est bien enregistré il manque uniquement le retour des données
+
+// Dans la fonction il est peut être nécessaire de ajouter next
+app.post('/uploadimgeditor', upload, function(req, res, next){
+    console.log('req : ', req.file)
+    functionTest(req, res)
+    .then(responseData => res.json(responseData))
 })
 
 
-// ROUTE Test 
-app.get('/test', (req, res) => {
-    res.render('test')
-})
-
-/* async function postingWithMulter(err, result){
+async function functionTest(req, res){
     return new Promise((resolve, reject) => {
-        if(err){
-            res.end("Erreur dans le téléchargement")
-        }
         const url = req.file.path
-        let data = {
+        /* const responseData = {
             success: 1,
             file : { url }
         }
-        resolve(data)
+        console.log("responseData : ", responseData) */
+        resolve({
+            success: 1,
+            file: {
+                url
+            }
+        })
     })
-} */
+    /* try{
+        new Promise((resolve, reject) => {
+            const url = req.file.path
+            const responseData = {
+                success: 1,
+                file : { url }
+            }
+            console.log("responseData : ", responseData)
+            resolve(responseData)
+        })
+    }catch(e){
+        console.log("je suis dans une erreure")
+    } */
+    /* console.log("je suis dans la fonction : ", req.file) */
+}
