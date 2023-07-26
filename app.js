@@ -1,10 +1,8 @@
 const express = require('express')
-/* const fileUpload = require('express-fileupload') */
 const cors = require('cors')
 const postingImage = require('./public/je_serveur/functionPostImage')
 const multer = require('multer')
 const auth_client = require('./public/middleware/auth_client')
-/* const multer = require('./public/middleware/multer-config') */
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -110,20 +108,11 @@ app.post('/upload', /* fileUpload() */ (req, res) => {
     })
 })
 
-//utiliser multer pour la gestion des images via Fetch
-app.post('/uploadImg',multer, (req, res) => {
-    console.log('req.files : ', req.file);
-})
 
 app.listen(PORT, () => {
     console.log(`Je suis lancé sur le port : ${PORT}`)
 })
 
-// Nouveau traitement des images pour les formulaires //
-
-/* Sur cette route seront poster les images de présentation des articles et cours
-elle doivent être stocker dans le dossier upload/picture_SD et upload/picture_HD après un traitement pour bloquer la taille max
-la fonction doit aussi renvoyer l'url des deux stokages afin de permettre le post du formulaire complet */
 app.post('/uploadimgpres', upload ,(req, res) => {
     upload(req, res, function(err, result){
         if(err){
@@ -143,13 +132,7 @@ app.post('/uploadimgpres', upload ,(req, res) => {
     })
 })
 
-
-/* Lors du post du cette route je doit renvoyer data afin que editorjs puisse avoir connaissance de l'url ainsi que du success de l'enregistrement */
-/* Le retour doit être identique que sur le route "/upload" que je ne peut pas utiliser car je dois ensuite utiliser sharp pour redimensionner les images */
-
-// Dans la fonction il est peut être nécessaire de ajouter next
 app.post('/uploadimgeditor', upload, function(req, res, next){
-    console.log('req : ', req.file)
     functionTest(req, res)
     .then(responseData => res.json(responseData))
 })
@@ -158,30 +141,11 @@ app.post('/uploadimgeditor', upload, function(req, res, next){
 async function functionTest(req, res){
     return new Promise((resolve, reject) => {
         const url = req.file.path
-        /* const responseData = {
-            success: 1,
-            file : { url }
-        }
-        console.log("responseData : ", responseData) */
         resolve({
             success: 1,
             file: {
-                url
+                url : "/" + url
             }
         })
     })
-    /* try{
-        new Promise((resolve, reject) => {
-            const url = req.file.path
-            const responseData = {
-                success: 1,
-                file : { url }
-            }
-            console.log("responseData : ", responseData)
-            resolve(responseData)
-        })
-    }catch(e){
-        console.log("je suis dans une erreure")
-    } */
-    /* console.log("je suis dans la fonction : ", req.file) */
 }
