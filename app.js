@@ -1,8 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const postingImage = require('./public/je_serveur/functionPostImage')
 const multer = require('multer')
-const auth_client = require('./public/middleware/auth_client')
+const auth_client = require('./public/middleware/auth_client');
+const fs = require('fs')
+const sharp = require('sharp');
 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -15,13 +16,12 @@ const storage = multer.diskStorage({
         callback(null, "./upload")
     },
     filename: (req, file, callback) => {
-        const name = file.originalname.split(' ').join('_')
+        const name = file.originalname.split(' ').join('_').split('.')
         const extension = MIME_TYPES[file.mimetype]
-        callback(null, name + Date.now() + "." + extension)
+        callback(null, name[0] + Date.now() + "." + extension)
     }
 })
 let upload = multer({storage : storage}).single('image')
-
 
 
 const PORT = 3000
@@ -98,17 +98,6 @@ app.get('/employeurs', (req, res) => {
 
 
 /* GESTION DES IMAGES */
-app.post('/upload', /* fileUpload() */ (req, res) => {
-    const { image } = req.files
-    console.log(image)
-    postingImage(image, req,res)
-    .then(data => {
-        console.log('data : ', data)
-        res.json(data)
-    })
-})
-
-
 app.listen(PORT, () => {
     console.log(`Je suis lancé sur le port : ${PORT}`)
 })
@@ -133,19 +122,67 @@ app.post('/uploadimgpres', upload ,(req, res) => {
 })
 
 app.post('/uploadimgeditor', upload, function(req, res, next){
-    functionTest(req, res)
-    .then(responseData => res.json(responseData))
+    postingWithEditor(req, res)
+    .then(responseData => {
+        console.log(responseData)
+        res.json(responseData)
+    })
 })
 
 
-async function functionTest(req, res){
+async function postingWithEditor(req, res){
     return new Promise((resolve, reject) => {
+        console.log(req)
         const url = req.file.path
-        resolve({
-            success: 1,
-            file: {
-                url : "/" + url
-            }
+        resizingSharp(url)
+        .then(resp => {
+            resolve({
+                success: 1,
+                file: {
+                    url : "/" + resp
+                }
+            })
         })
     })
 }
+
+//Fonction test de Sharp 
+async function resizingSharp(path){
+    // Gestion du nom du fichier :
+    const fctPath = path
+    
+    const parts = path.split(/[\\/]/)
+
+    const fileNameWithExtension = parts[parts.length - 1];
+    const fileName = fileNameWithExtension.split('.')[0];
+    const extension = fileNameWithExtension.split('.').pop();
+
+    const fileNameFinal = fileName+"_small"+"."+extension
+
+    const destFinal = "./upload/"+fileNameFinal
+
+    // Gestion du redimmensionnement :
+    await sharp(fctPath)
+    .resize(1200)
+    .toFile(destFinal)
+    .then(data => console.log(data))
+    fs.unlink(fctPath, (err) => {
+        if(err){
+            console.error(err)
+        }else{
+            console.log("supp réussi")
+        }
+    })
+
+    return destFinal
+}
+
+/* const urlTestImg0 = "./upload\\pexels-eberhard-grossgasteiger-6916681690485981604.jpg"
+const urlTestImg1 = "./upload\\pexels-errin-casano-23560871690485986478.jpg"
+const urlTestImg2 = "./upload\\pexels-marlon-martinez-14947081690485990662.jpg"
+const urlTestImg3 = "./upload\\pexels-pixabay-2563811690485996093.jpg"
+
+resizingSharp(urlTestImg3)
+.then(resp => console.log('resp : ',resp)) */
+
+
