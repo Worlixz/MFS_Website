@@ -124,7 +124,6 @@ app.post('/uploadimgpres', upload ,(req, res) => {
 app.post('/uploadimgeditor', upload, function(req, res, next){
     postingWithEditor(req, res)
     .then(responseData => {
-        console.log(responseData)
         res.json(responseData)
     })
 })
@@ -134,7 +133,7 @@ async function postingWithEditor(req, res){
     return new Promise((resolve, reject) => {
         console.log(req)
         const url = req.file.path
-        resizingSharp(url)
+        resizingSharp(url, 1200)
         .then(resp => {
             resolve({
                 success: 1,
@@ -146,8 +145,8 @@ async function postingWithEditor(req, res){
     })
 }
 
-//Fonction test de Sharp 
-async function resizingSharp(path){
+// Redimmensionnement des images avec SHARP
+async function resizingSharp(path, width){
     // Gestion du nom du fichier :
     const fctPath = path
     
@@ -163,7 +162,7 @@ async function resizingSharp(path){
 
     // Gestion du redimmensionnement :
     await sharp(fctPath)
-    .resize(1200)
+    .resize(width)
     .toFile(destFinal)
     .then(data => console.log(data))
     fs.unlink(fctPath, (err) => {
@@ -176,13 +175,4 @@ async function resizingSharp(path){
 
     return destFinal
 }
-
-/* const urlTestImg0 = "./upload\\pexels-eberhard-grossgasteiger-6916681690485981604.jpg"
-const urlTestImg1 = "./upload\\pexels-errin-casano-23560871690485986478.jpg"
-const urlTestImg2 = "./upload\\pexels-marlon-martinez-14947081690485990662.jpg"
-const urlTestImg3 = "./upload\\pexels-pixabay-2563811690485996093.jpg"
-
-resizingSharp(urlTestImg3)
-.then(resp => console.log('resp : ',resp)) */
-
 
