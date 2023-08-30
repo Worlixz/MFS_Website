@@ -9,6 +9,8 @@ const formCtn = document.getElementById('formContent')
 const btnSubmit = document.getElementById('btnSubmit')
 
 
+
+
 btnCours.addEventListener('click', (e) => {
     const typeBtn = e.target.value
     
@@ -44,6 +46,9 @@ function formImage (typeBtn) {
     div.innerHTML = `
         <label for="imgFile" id="imgForm">Image de présentation ${typeBtn === "cours" ? "du cours" : "de l'article" }</label>
         <input class="marginTop15" type="file" id="imgFile" name="imgFile" accept="image/png, image/jpeg" required>
+        <div class="divBtnForm">
+                        <button class="btn-EnvoyerForm" id="btnSubmitTest">Envoyer</button>
+                    </div>
     `
     console.log(div)
     return div
@@ -123,6 +128,7 @@ function eventLister(){
     const premium_article_false = document.getElementById('premium_false')
     const date_parution = document.getElementById('date_parution')
     const caractMax = document.getElementById('caractMax')
+    const btnSubmitTest = document.getElementById('btnSubmitTest')
     caractMax.innerHTML = 150
 
     
@@ -216,7 +222,6 @@ function eventLister(){
 
     })
     
-    
 }
 
 
@@ -239,3 +244,7 @@ async function postImgPres(formData){
         console.log(e)
     }
 }
+
+formCtn.addEventListener('submit', (e) => {
+    e.preventDefault()
+})

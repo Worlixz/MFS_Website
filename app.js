@@ -102,7 +102,7 @@ app.listen(PORT, () => {
     console.log(`Je suis lancé sur le port : ${PORT}`)
 })
 
-app.post('/uploadimgpres', upload ,(req, res) => {
+/* app.post('/uploadimgpres', upload ,(req, res) => {
     upload(req, res, function(err, result){
         if(err){
             res.end("Erreur dans le téléchargement de l'image", err)
@@ -119,6 +119,13 @@ app.post('/uploadimgpres', upload ,(req, res) => {
         res.end("Le fichier est bien téléchargé")
         return url
     })
+}) */
+app.post('/uploadimgpres', upload ,(req, res) => {
+    postingImgPres(req, res)
+    .then(responseData => {
+        console.log('respData : ', responseData)
+        res.json(responseData)
+    })
 })
 
 app.post('/uploadimgeditor', upload, function(req, res, next){
@@ -131,7 +138,6 @@ app.post('/uploadimgeditor', upload, function(req, res, next){
 
 async function postingWithEditor(req, res){
     return new Promise((resolve, reject) => {
-        console.log(req)
         const url = req.file.path
         resizingSharp(url, 1200)
         .then(resp => {
@@ -144,6 +150,15 @@ async function postingWithEditor(req, res){
         })
     })
 }
+
+async function postingImgPres(req, res){
+    return new Promise((resolve, reject) => {
+        console.log(req)
+        const { img } = req.body
+        console.log('img : ', img)
+    })
+}
+
 
 // Redimmensionnement des images avec SHARP
 async function resizingSharp(path, width){
